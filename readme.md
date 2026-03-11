@@ -10,7 +10,7 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 | Task                          | Assigned to   | Done?         | Comments                      |
 | :---------------------------- | :------------ | :--------     | :---------------------------- |
 | User Registration & Login     | []            | [not done]    |  |
-| News Feed                     | []            | [not done]    |  |
+| News Feed                     | [khaled?]     | [not done]    |  |
 | Create/Delete Posts           | []            | [not done]    |  |
 | Like/Comment on a Post        | []            | [not done]    |  |
 | User Profile                  | []            | [not done]    |  |
