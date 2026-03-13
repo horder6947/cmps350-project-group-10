@@ -16,8 +16,8 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 | User Registration & Login     | []            | [not done]    |  |
 | News Feed                     | [khaled?]     | [not done]    |  |
 | Create/Delete Posts           | []            | [not done]    |  |
-| Like/Comment on a Post        | []            | [not done]    |  |
-| User Profile                  | []            | [not done]    |  |
+| Like/Comment on a Post        | [Tameem]      | [not done]    |  |
+| User Profile                  | [Tameem]      | [not done]    |  |
 | Layout & Responsiveness       | [khaled?]     | [not done]    |  |
 | Design & Consistency          | []            | [not done]    |  |
 | Edit User Bio                 | []            | [not done]    |  |
