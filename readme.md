@@ -21,5 +21,5 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 | Layout & Responsiveness       | [khaled]      | [not done]    |  |
 | Design & Consistency          | []            | [not done]    |  |
 | Edit User Bio                 | []            | [not done]    |  |
-| Data Handling                 | [khaled]      | [not done]    |  |
+| Data Handling                 | [khaled]      | [done]        | more testing needed |
 | Javascript Backend/Scripts    | [khaled]      | [not done]    |  |

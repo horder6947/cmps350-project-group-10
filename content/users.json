@@ -1,14 +1,14 @@
 [
     {
-        "userid": "KRo53fKY5l",
+        "userID": "KRo53fKY5l",
         "username": "user1",
         "email": "user1@example.com",
         "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
         "bio": "Sample Bio 1",
-        "followersCount": 2,
+        "createdTimestamp": 1773764416271,
+        "followersCount": 1,
         "followingCount": 2,
         "followers": [
-            "c7jvAWdXB5",
             "uasT3a59C6"
         ],
         "following": [
@@ -22,30 +22,30 @@
         ]
     },
     {
-        "userid": "c7jvAWdXB5",
+        "userID": "c7jvAWdXB5",
         "username": "user2",
         "email": "user2@example.com",
         "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
         "bio": "Sample Bio 2",
+        "createdTimestamp": 1773764416271,
         "followersCount": 1,
-        "followingCount": 1,
+        "followingCount": 0,
         "followers": [
             "KRo53fKY5l"
         ],
-        "following": [
-            "KRo53fKY5l"
-        ],
+        "following": [],
         "postsCount": 1,
         "posts": [
-            "lx1wy7XfNdGqcrLQ4T0T"
+            "41WSRiVx-INLyzD2gehm"
         ]
     },
     {
-        "userid": "uasT3a59C6",
+        "userID": "uasT3a59C6",
         "username": "user3",
         "email": "user3@example.com",
         "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
         "bio": "",
+        "createdTimestamp": 1773764416271,
         "followersCount": 1,
         "followingCount": 1,
         "followers": [
@@ -58,16 +58,19 @@
         "posts": []
     },
     {
-        "userid": "D1CKLmcKvZ",
+        "userID": "D1CKLmcKvZ",
         "username": "user4",
         "email": "user4@example.com",
         "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
         "bio": "",
+        "createdTimestamp": 1773764416271,
         "followersCount": 0,
         "followingCount": 0,
         "followers": [],
         "following": [],
-        "postsCount": 0,
-        "posts": []
+        "postsCount": 1,
+        "posts": [
+            "vVOE-vS2jX70hCleDG5s"
+        ]
     }
 ]

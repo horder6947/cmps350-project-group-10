@@ -1,4 +1,4 @@
 import { customAlphabet, nanoid } from "nanoid";
-import { newUser } from "./script";
+import * as script from "./script";
 
-console.log(newUser("user4", "user4@example.com", "password123"));
+script.changeUsername("KRo53fKY5l", "user1");
