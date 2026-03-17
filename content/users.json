@@ -1,0 +1,73 @@
+[
+    {
+        "userid": "KRo53fKY5l",
+        "username": "user1",
+        "email": "user1@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Sample Bio 1",
+        "followersCount": 2,
+        "followingCount": 2,
+        "followers": [
+            "c7jvAWdXB5",
+            "uasT3a59C6"
+        ],
+        "following": [
+            "c7jvAWdXB5",
+            "uasT3a59C6"
+        ],
+        "postsCount": 2,
+        "posts": [
+            "qPP-XOXFkXlXAZjKJ6k4",
+            "2x2LMscCETQgDPky9OZ2"
+        ]
+    },
+    {
+        "userid": "c7jvAWdXB5",
+        "username": "user2",
+        "email": "user2@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Sample Bio 2",
+        "followersCount": 1,
+        "followingCount": 1,
+        "followers": [
+            "KRo53fKY5l"
+        ],
+        "following": [
+            "KRo53fKY5l"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "lx1wy7XfNdGqcrLQ4T0T"
+        ]
+    },
+    {
+        "userid": "uasT3a59C6",
+        "username": "user3",
+        "email": "user3@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "",
+        "followersCount": 1,
+        "followingCount": 1,
+        "followers": [
+            "KRo53fKY5l"
+        ],
+        "following": [
+            "KRo53fKY5l"
+        ],
+        "postsCount": 0,
+        "posts": []
+    },
+    {
+        "userid": "D1CKLmcKvZ",
+        "username": "user4",
+        "email": "user4@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "",
+        "followersCount": 0,
+        "followingCount": 0,
+        "followers": [],
+        "following": [],
+        "postsCount": 0,
+        "posts": []
+    }
+]
