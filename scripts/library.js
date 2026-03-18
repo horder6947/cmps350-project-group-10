@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 export {
     newUser,
     doesUserExist,
+    login,
     createPost,
     deletePost,
     likePost,
@@ -55,6 +56,17 @@ function doesUserExist(email) {
     if (users.find((e) => e.email === email))
         return true;
     return false;
+
+}
+
+function login(email, password) {
+
+    const users = readUsersJSON();
+    const user = users.find((e) => e.email === email);
+
+    if (!user) return false;
+
+    return sha256(password) === user.passwordSHA256;
 
 }
 
