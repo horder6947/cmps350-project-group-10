@@ -1,4 +1,5 @@
 import { customAlphabet, nanoid } from "nanoid";
-import * as script from "./script";
+import * as script from "./library";
 
-script.changeUsername("KRo53fKY5l", "user1");
+console.log(script.doesUserExist("user1@example.com"));
+console.log(script.doesUserExist(""));

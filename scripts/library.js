@@ -1,6 +1,27 @@
 import { nanoid } from "nanoid";
 
-export { newUser, createPost, deletePost, likePost, removeLike, commentOnPost, deleteComment, follow, unfollow, changeBio, addProfilePicture, changeUsername, changePassword }
+export {
+    newUser,
+    doesUserExist,
+    createPost,
+    deletePost,
+    likePost,
+    removeLike,
+    commentOnPost,
+    deleteComment,
+    follow,
+    unfollow,
+    changeBio,
+    addProfilePicture,
+    changeUsername,
+    changePassword,
+    getPostsByAuthorID,
+    getFollowers,
+    getFollowing,
+    getPostsSortByLikes,
+    getPostsSortByComments,
+    getPostsSortChronologically
+}
 
 function newUser(username, email, password) {
 
@@ -25,6 +46,15 @@ function newUser(username, email, password) {
     writeUsersJSON(users);
 
     return newUserID;
+
+}
+
+function doesUserExist(email) {
+
+    const users = readUsersJSON();
+    if (users.find((e) => e.email === email))
+        return true;
+    return false;
 
 }
 
@@ -217,6 +247,55 @@ function changePassword(userID, oldPassword, newPassword) {
     } else {
         return false;
     }
+
+}
+
+function getPostsByAuthorID(authorID) {
+
+    const users = readUsersJSON();
+    const posts = readPostsJSON();
+    const authorPostsIDs = users.find((e) => e.userID === authorID).posts;
+
+    return posts.filter((e) => authorPostsIDs.includes(e.postID));
+
+}
+
+function getFollowers(userID) {
+
+    const users = readUsersJSON();
+    const followersIDs = users.find((e) => e.userID === userID).followers;
+
+    return users.filter((e) => followersIDs.includes(e.userID));
+
+}
+
+function getFollowing(userID) {
+
+    const users = readUsersJSON();
+    const followingIDs = users.find((e) => e.userID === userID).following;
+
+    return users.filter((e) => followingIDs.includes(e.userID));
+
+}
+
+function getPostsSortByLikes(descending = true) {
+
+    const posts = readPostsJSON();
+    return posts.sort((a, b) => descending ? b.likesCount - a.likesCount : a.likesCount - b.likesCount);
+
+}
+
+function getPostsSortByComments(descending = true) {
+
+    const posts = readPostsJSON();
+    return posts.sort((a, b) => descending ? b.commentsCount - a.commentsCount : a.commentsCount - b.commentsCount);
+
+}
+
+function getPostsSortChronologically(descending = true) {
+
+    const posts = readPostsJSON();
+    return posts.sort((a, b) => descending ? b.createdTimestamp - a.createdTimestamp : a.createdTimestamp - b.createdTimestamp);
 
 }
 
