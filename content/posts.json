@@ -1,37 +1,72 @@
 [
     {
         "postID": "2x2LMscCETQgDPky9OZ2",
+        "authorID": "KRo53fKY5l",
         "postContent": "Sample Post 1",
+        "createdTimestamp": 1773764416271,
         "likesCount": 2,
-        "commentsCount": 2,
+        "likes": [
+            "c7jvAWdXB5",
+            "uasT3a59C6"
+        ],
+        "commentsCount": 1,
         "comments": [
-            [
-                "c7jvAWdXB5",
-                "Sample Comment 1"
-            ],
-            [
-                "uasT3a59C6",
-                "Sample Comment 2"
-            ]
+            {
+                "commentID": "OKNBWyod8lPSlLBRezgf",
+                "authorID": "c7jvAWdXB5",
+                "createdTimestamp": 1773764416271,
+                "comment": "Sample Comment 1"
+            }
         ]
     },
     {
         "postID": "qPP-XOXFkXlXAZjKJ6k4",
+        "authorID": "KRo53fKY5l",
         "postContent": "Sample Post 2",
+        "createdTimestamp": 1773764416271,
         "likesCount": 2,
+        "likes": [
+            "c7jvAWdXB5",
+            "uasT3a59C6"
+        ],
         "commentsCount": 1,
         "comments": [
-            [
-                "uasT3a59C6",
-                "Sample Comment 1"
-            ]
+            {
+                "commentID": "POuige0zlQVGGbeEU4ke",
+                "authorID": "uasT3a59C6",
+                "createdTimestamp": 1773764416271,
+                "comment": "Sample Comment 1"
+            }
         ]
     },
     {
-        "postID": "2fcb6bf88fffa59387a0",
+        "postID": "41WSRiVx-INLyzD2gehm",
+        "authorID": "c7jvAWdXB5",
         "postContent": "Sample Post 3",
+        "createdTimestamp": 1773764416271,
         "likesCount": 2,
+        "likes": [
+            "c7jvAWdXB5",
+            "uasT3a59C6"
+        ],
         "commentsCount": 0,
         "comments": []
+    },
+    {
+        "postID": "vVOE-vS2jX70hCleDG5s",
+        "authorID": "D1CKLmcKvZ",
+        "postContent": "Sample Post 4",
+        "createdTimestamp": 1773766159648,
+        "likesCount": 0,
+        "likes": [],
+        "commentsCount": 0,
+        "comments": [
+            {
+                "commentID": "HGhGElYIrwBx1M-HKsGK",
+                "authorID": "KRo53fKY5l",
+                "createdTimestamp": 1773774980605,
+                "comment": "Sample Comment 1"
+            }
+        ]
     }
 ]
