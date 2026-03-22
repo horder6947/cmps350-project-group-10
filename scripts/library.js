@@ -353,27 +353,15 @@ function writeUsersJSON(users) {
 }
 
 function readPostsJSON() {
-    const fs = require('fs');
-    const path = '../content/posts.json';
-    const content = fs.readFileSync(path, 'utf-8');
-
-    const contentObject = JSON.parse(content);
-
-    return contentObject;
+    const data = localStorage.getItem('posts');
+    return data ? JSON.parse(data) : [];
 }
 
-function writePostsJSON(users) {
-    const newContent = JSON.stringify(users, null, 4);
-
-    const fs = require('fs');
-    const path = '../content/posts.json';
-
-    fs.writeFileSync(path, newContent, 'utf-8');
+function writePostsJSON(posts) {
+    localStorage.setItem('posts', JSON.stringify(posts));
 }
 
 function sha256(input) {
-    const crypto = require('crypto');
-    const hash = crypto.createHash('sha256');
-    hash.update(input);
-    return hash.digest('hex');
+    // Basic hash placeholder for phase 1 since we're in the browser
+    return input;
 }
