@@ -1,6 +1,7 @@
-import { getPostsSortChronologically, getUser, likePost as libraryLikePost } from './library.js';
+// Standard Javascript logic for the News Feed!
+// (Assuming library.js and nanoid.js are included as standard <script> tags above this in the HTML file)
 
-// Run immediately to load the feed
+// Run immediately to load the feed once the script is parsed at the bottom of the body
 loadFeed();
 
 function loadFeed() {
@@ -30,26 +31,28 @@ function loadFeed() {
         return;
     }
 
-    // clear the loading text
+    // clear the placeholder or loading text
     feedContainer.innerHTML = '';
 
-    // loop through the posts with a regular for loop
+    // loop through the posts with a regular for loop (no map/forEach needed)
     for (let i = 0; i < posts.length; i++) {
         let post = posts[i];
 
+        // Use the global function from library.js
         let author = getUser(post.authorID);
-        // if user was deleted or something
+
+        // if user was deleted or something went wrong
         if (author == null) {
             author = { username: 'UnknownUser' };
         }
 
-        // format the timestamp to readable text
+        // format the timestamp to readable text natively
         let postDate = new Date(post.createdTimestamp).toLocaleString();
 
         let article = document.createElement('article');
         article.className = 'card post-card';
 
-        // building the HTML string using concatenation (old school way)
+        // building the HTML string using string concatenation (very reliable student approach)
         let html = '';
         html += '<header class="post-header">';
         html += '  <a href="profile.html?id=' + post.authorID + '" class="post-author">@' + author.username + '</a>';
@@ -63,17 +66,18 @@ function loadFeed() {
         html += '  <button class="btn comment-btn">Comment (' + post.comments.length + ')</button>';
         html += '</footer>';
 
+        // inject our built string
         article.innerHTML = html;
 
-        // make the like button work for this specific post
+        // make the like button specifically work for this single post in the loop
         let likeBtn = article.querySelector('.like-btn');
         likeBtn.onclick = function () {
-            // using a dummy user for now since login isn't hooked up yet
-            libraryLikePost('guest_user', post.postID);
-            loadFeed(); // reload to update numbers on screen
+            // using a dummy user for now since actual login sessions aren't built yet
+            likePost('guest_user', post.postID);
+            loadFeed(); // reload immediately so the HTML number updates
         };
 
-        // add the finished post article to the page wrapper
+        // finally, attach our finished article box to the feed
         feedContainer.appendChild(article);
     }
 }

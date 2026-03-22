@@ -14,7 +14,7 @@
         <div class="nav-container">
             <a class="nav-logo" href="feed.html">Social Feed</a>
             <div class="nav-links">
-                <a href="feed.html">Feed</a>
+                <a href="feed.html" class="active">Feed</a>
                 <a href="new-post.html">New post</a>
                 <a href="profile.html">Profile</a>
                 <a href="login.html">Log out</a>
@@ -31,7 +31,10 @@
             <p>Loading posts...</p>
         </section>
     </main>
-    <script type="module" src="scripts/feed.js"></script>
+    <!-- Include backend data functions globally so they can be accessed anywhere -->
+    <script src="scripts/nanoid.js"></script>
+    <script src="scripts/library.js"></script>
+    <script src="scripts/feed.js"></script>
 </body>
 
 

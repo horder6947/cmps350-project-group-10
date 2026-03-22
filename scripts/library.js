@@ -1,31 +1,4 @@
-import { nanoid } from "./nanoid.js";
-
-export {
-    newUser,
-    getUser,
-    doesUserExist,
-    login,
-    createPost,
-    deletePost,
-    likePost,
-    removeLike,
-    commentOnPost,
-    deleteComment,
-    follow,
-    unfollow,
-    changeBio,
-    addProfilePicture,
-    changeUsername,
-    changePassword,
-    getPostsByAuthorID,
-    getFollowers,
-    getFollowing,
-    getPostsSortByLikes,
-    getPostsSortByComments,
-    getPostsSortChronologically,
-    // readUsersJSON,
-    // readPostsJSON
-}
+// Shared Data Functions for the Web Frontend
 
 function newUser(username, email, password) {
 

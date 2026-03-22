@@ -14,7 +14,7 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 | Task                          | Assigned to   | Done?         | Comments                          |
 | :---------------------------- | :------------ | :--------     | :-------------------------------- |
 | User Registration & Login     | [Sharif]      | [not done]    |                                   |
-| News Feed                     | [yacine]      | [not done]    |                                   |
+| News Feed                     | [yacine]      | [done]        | Implemented dynamic UI & loading  |
 | Create/Delete Posts           | [Tameem]      | [not done]    |                                   |
 | Like/Comment on a Post        | [Tameem]      | [not done]    |                                   |
 | User Profile                  | [Sharif]      | [not done]    |                                   |
