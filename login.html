@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<link href="styles/login.css" rel="stylesheet" />
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/login.css">
 </head>
 
 <body>
-    <div class="page">
+    <main class="page container">
         <div class="left-side">
             <h1>Sign in to your platform</h1>
             <p>Log in with your account to view and post on the social feed page created for this project.</p>
         </div>
 
-        <div class="box">
+        <section class="card">
             <div class="badge">Login</div>
             <h2>Sign in</h2>
             <form action="feed.html" method="get">
                 <div>
                     <label for="email">Email</label>
-                    <input id="email" name="email" type="email">
+                    <input id="email" name="email" type="email" class="input-field">
                 </div>
 
                 <div>
                     <label for="password">Password</label>
-                    <input id="password" name="password" type="password">
+                    <input id="password" name="password" type="password" class="input-field">
                 </div>
 
-                <button type="submit">Login</button>
+                <button type="submit" class="btn">Login</button>
             </form>
             <p>If you don't have an account, <a href="register.html">register here</a>.</p>
-        </div>
-    </div>
+        </section>
+    </main>
 </body>
 
 </html>

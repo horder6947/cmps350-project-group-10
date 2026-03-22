@@ -19,6 +19,6 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 | Like/Comment on a Post        | [Tameem]      | [not done]    |                                   |
 | User Profile                  | [Sharif]      | [not done]    |                                   |
 | Layout & Responsiveness       | [khaled]      | [not done]    |                                   |
-| Design & Consistency          | [yacine]      | [not done]    |                                   |
+| Design & Consistency          | [yacine]      | [done]        | Set up global.css styling         |
 | Data Handling                 | [khaled]      | [not done]    | more testing needed, address security issues |
 | Javascript Backend/Scripts    | [all]         | [not done]    |                                   |

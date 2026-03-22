@@ -1,0 +1,123 @@
+/* color variables for the whole site */
+:root {
+    --blue: #3b82f6;
+    --dark-blue: #2563eb;
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border: #e5e7eb;
+
+    /* shadow and radius */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --radius: 8px;
+
+    /* spacing */
+    --space-s: 8px;
+    --space-m: 16px;
+    --space-l: 24px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    /* simple fonts */
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+/* main container so things dont stretch too much */
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 var(--space-m);
+}
+
+/* common card style for posts and other boxes */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: var(--space-l);
+    margin-bottom: var(--space-m);
+}
+
+/* standard button */
+.btn {
+    display: inline-block;
+    background-color: var(--blue);
+    color: white;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: var(--dark-blue);
+}
+
+/* text inputs */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 16px;
+    margin-bottom: var(--space-m);
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--blue);
+}
+
+/* top navigation bar - requirement asks to use flexbox */
+.top-nav {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    padding: var(--space-m) 0;
+    margin-bottom: 20px;
+}
+
+.nav-container {
+    display: flex;
+    /* flexbox for the nav */
+    justify-content: space-between;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 var(--space-m);
+}
+
+.nav-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+    /* space between links */
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: var(--blue);
+}
