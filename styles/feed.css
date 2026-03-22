@@ -1,0 +1,59 @@
+/* styles specifically for the feed page */
+
+/* using flexbox inside the post card */
+.post-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    /* pushes author to left, time to right */
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.post-author {
+    font-weight: bold;
+    color: var(--dark-blue);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.post-author:hover {
+    text-decoration: underline;
+}
+
+.post-time {
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.post-content {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+    /* space between like and comment buttons */
+}
+
+/* slightly different button style for interacting with posts */
+.like-btn,
+.comment-btn {
+    background-color: transparent;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+}
+
+.like-btn:hover,
+.comment-btn:hover {
+    background-color: var(--blue);
+    color: white;
+}
