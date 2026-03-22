@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="styles/profile.css">
+    <script type="module" src="scripts/profile.js"></script>
 </head>
 
 <body>
@@ -20,10 +21,10 @@
         </header>
 
         <main class="profile-card">
-            <div class="cover" ></div>
+            <div class="cover"></div>
             <div class="profile-body">
                 <div class="avatar-row">
-                    <div class="avatar" >sharif</div>
+                    <div class="avatar" id="pfpText">{}</div>
                     <div class="profile-actions">
                         <button type="button" class="btn btn-primary">Edit profile</button>
                         <a class="btn btn-secondary" href="feed.html">View feed</a>
@@ -31,33 +32,30 @@
                 </div>
 
                 <div class="profile-info">
-                    <h1>sharif hamad</h1>
-                    <p class="handle">@yh7yh</p>
-                    <p class="email">sh2209291@qu.edu.qa</p>
+                    <h1 id="username">{username}</h1>
+                    <p id="userid">{userid}</p>
+                    <p class="email" id="email">{email}</p>
                 </div>
 
                 <div class="bio">
-                    <p>eng sharif</p>
-                    <p>qu student</p>
+                    <p id="bio">{bio}</p>
                 </div>
-                
+
 
                 <div class="stats">
-                    <div class="stat" >
-                        <p>10M</p>
+                    <div class="stat">
+                        <p id="followersCount">{followersCount}</p>
                         <span>Followers</span>
                     </div>
                     <div class="stat">
-                        <p>20k</p>
+                        <p id="followingCount">{followingCount}</p>
                         <span>Following</span>
                     </div>
-                    <div class="stat" >
-                        <p>30</p>
+                    <div class="stat">
+                        <p id="postsCount">{postsCount}</p>
                         <span>Posts</span>
                     </div>
                 </div>
-
-                <p class="footer">User ID: KRo53fKY5l</p>
             </div>
         </main>
     </div>

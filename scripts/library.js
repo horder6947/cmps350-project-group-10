@@ -1,7 +1,8 @@
-import { nanoid } from "nanoid";
+import { nanoid } from "./nanoid.js";
 
 export {
     newUser,
+    getUser,
     doesUserExist,
     login,
     createPost,
@@ -21,7 +22,9 @@ export {
     getFollowing,
     getPostsSortByLikes,
     getPostsSortByComments,
-    getPostsSortChronologically
+    getPostsSortChronologically,
+    // readUsersJSON,
+    // readPostsJSON
 }
 
 function newUser(username, email, password) {
@@ -47,6 +50,14 @@ function newUser(username, email, password) {
     writeUsersJSON(users);
 
     return newUserID;
+
+}
+
+function getUser(userID) {
+
+    const users = readUsersJSON();
+
+    return users.find((e) => e.userID === userID);
 
 }
 
@@ -313,23 +324,32 @@ function getPostsSortChronologically(descending = true) {
 
 
 
+// function readUsersJSON() {
+//     const fs = require('fs');
+//     const path = '../content/users.json';
+//     const content = fs.readFileSync(path, 'utf-8');
+
+//     const contentObject = JSON.parse(content);
+
+//     return contentObject;
+// }
+
+// function writeUsersJSON(users) {
+//     const newContent = JSON.stringify(users, null, 4);
+
+//     const fs = require('fs');
+//     const path = '../content/users.json';
+
+//     fs.writeFileSync(path, newContent, 'utf-8');
+// }
+
 function readUsersJSON() {
-    const fs = require('fs');
-    const path = '../content/users.json';
-    const content = fs.readFileSync(path, 'utf-8');
-
-    const contentObject = JSON.parse(content);
-
-    return contentObject;
+    const data = localStorage.getItem('users');
+    return data ? JSON.parse(data) : [];
 }
 
 function writeUsersJSON(users) {
-    const newContent = JSON.stringify(users, null, 4);
-
-    const fs = require('fs');
-    const path = '../content/users.json';
-
-    fs.writeFileSync(path, newContent, 'utf-8');
+    localStorage.setItem('users', JSON.stringify(users));
 }
 
 function readPostsJSON() {
