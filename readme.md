@@ -14,11 +14,11 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 | Task                          | Assigned to   | Done?         | Comments                          |
 | :---------------------------- | :------------ | :--------     | :-------------------------------- |
 | User Registration & Login     | [Sharif]      | [not done]    |                                   |
-| News Feed                     | []            | [not done]    |                                   |
+| News Feed                     | [yacine]      | [not done]    |                                   |
 | Create/Delete Posts           | [Tameem]      | [not done]    |                                   |
 | Like/Comment on a Post        | [Tameem]      | [not done]    |                                   |
 | User Profile                  | [Sharif]      | [not done]    |                                   |
 | Layout & Responsiveness       | [khaled]      | [not done]    |                                   |
-| Design & Consistency          | []            | [not done]    |                                   |
+| Design & Consistency          | [yacine]      | [not done]    |                                   |
 | Data Handling                 | [khaled]      | [not done]    | more testing needed, address security issues |
 | Javascript Backend/Scripts    | [all]         | [not done]    |                                   |
