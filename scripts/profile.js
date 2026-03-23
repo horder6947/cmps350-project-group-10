@@ -1,4 +1,4 @@
-import { getUser } from "./library.js";
+import { getUser, readUsersJSON } from "./library.js";
 
 // Get the full current URL
 const currentUrl = new URL(window.location.href);
@@ -61,3 +61,5 @@ function loadUserData() {
 }
 
 loadUserData();
+
+// console.log(await sha256("password123"));

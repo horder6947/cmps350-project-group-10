@@ -1,6 +1,40 @@
 // Shared Data Functions for the Web Frontend
 
-function newUser(username, email, password) {
+import { nanoid } from "./nanoid.js";
+
+export {
+    newUser,
+    getUser,
+    doesUserExist,
+    login,
+    createPost,
+    deletePost,
+    likePost,
+    removeLike,
+    commentOnPost,
+    deleteComment,
+    follow,
+    unfollow,
+    changeBio,
+    addProfilePicture,
+    changeUsername,
+    changePassword,
+    getPostsByAuthorID,
+    getFollowers,
+    getFollowing,
+    getPostsSortByLikes,
+    getPostsSortByComments,
+    getPostsSortChronologically,
+    readUsersJSON,
+    readPostsJSON,
+    sha256
+}
+
+async function test() {
+    console.log(await sha256("password123"));
+}
+
+async function newUser(username, email, password) {
 
     const users = readUsersJSON();
     const newUserID = nanoid(10);
@@ -9,7 +43,7 @@ function newUser(username, email, password) {
         "userID": newUserID,
         "username": username,
         "email": email,
-        "passwordSHA256": sha256(password),
+        "passwordSHA256": await sha256(password),
         "bio": "",
         "createdTimestamp": Date.now(),
         "followersCount": 0,
@@ -43,14 +77,14 @@ function doesUserExist(email) {
 
 }
 
-function login(email, password) {
+async function login(email, password) {
 
     const users = readUsersJSON();
     const user = users.find((e) => e.email === email);
 
     if (!user) return false;
 
-    return sha256(password) === user.passwordSHA256;
+    return await sha256(password) === user.passwordSHA256;
 
 }
 
@@ -231,13 +265,13 @@ function changeUsername(userID, username) {
 
 }
 
-function changePassword(userID, oldPassword, newPassword) {
+async function changePassword(userID, oldPassword, newPassword) {
 
     const users = readUsersJSON();
     const user = users.find((e) => e.userID === userID);
 
-    if (user.password === sha256(oldPassword)) {
-        user.password = sha256(newPassword);
+    if (user.password === await sha256(oldPassword)) {
+        user.password = await sha256(newPassword);
         writeUsersJSON(users);
         return true;
     } else {
@@ -334,7 +368,27 @@ function writePostsJSON(posts) {
     localStorage.setItem('posts', JSON.stringify(posts));
 }
 
-function sha256(input) {
-    // Basic hash placeholder for phase 1 since we're in the browser
-    return input;
+// function sha256(input) {
+//     const crypto = require('crypto');
+//     const hash = crypto.createHash('sha256');
+//     hash.update(input);
+//     return hash.digest('hex');
+// }
+
+// Must be called from an async function like this: 'await sha256("example")'
+async function sha256(input) {
+    // Convert string to Uint8Array
+    const encoder = new TextEncoder();
+    const data = encoder.encode(input);
+
+    // Hash the data
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+    // Convert buffer to hex string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+
+    return hashHex;
 }
