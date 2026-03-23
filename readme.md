@@ -12,13 +12,13 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 ## 2. Feature Checklist
  
 | Task                          | Assigned to   | Done?         | Comments                          |
-| :---------------------------- | :------------ | :--------     | :-------------------------------- |
-| User Registration & Login     | [Sharif]      | [not done]    |                                   |
-| News Feed                     | [yacine]      | [done]        | Implemented dynamic UI & loading  |
+| :---------------------------- | :------------ | :------------ | :-------------------------------- |
+| User Registration & Login     | [Sharif]      | [started]     | implement js                      |
+| News Feed                     | [yacine]      | [started]     | add option to sort by likes/comments, add toggle to show from following only (requires extra function in library.js) |
 | Create/Delete Posts           | [Tameem]      | [not done]    |                                   |
 | Like/Comment on a Post        | [Tameem]      | [not done]    |                                   |
-| User Profile                  | [Sharif]      | [not done]    |                                   |
+| User Profile                  | [Sharif]      | [started]     | display followers and following accounts |
 | Layout & Responsiveness       | [khaled]      | [not done]    |                                   |
-| Design & Consistency          | [yacine]      | [done]        | Set up global.css styling         |
-| Data Handling                 | [khaled]      | [not done]    | more testing needed, address security issues |
-| Javascript Backend/Scripts    | [all]         | [not done]    |                                   |
+| Design & Consistency          | [yacine]      | [started]     | add dark mode                     |
+| Data Handling                 | [khaled]      | [almost]      | more testing needed, address security issues, add getPostsByUserID function and sorting functions |
+| Javascript Backend/Scripts    | [all]         | [started]     |                                   |
