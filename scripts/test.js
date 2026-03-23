@@ -1,4 +1,4 @@
 import { customAlphabet, nanoid } from "nanoid";
 import * as script from "./library";
 
-console.log(script.getUser(null));
+console.log(script.getPostsSortChronologically());

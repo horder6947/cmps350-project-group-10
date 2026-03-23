@@ -1,4 +1,4 @@
-import { getUser, readUsersJSON } from "./library.js";
+import { initializeUsers, initializePosts, getUser } from "./library.js";
 
 // Get the full current URL
 const currentUrl = new URL(window.location.href);
@@ -19,22 +19,8 @@ const followingCount = document.getElementById('followingCount');
 const postsCount = document.getElementById('postsCount');
 const pfpText = document.getElementById('pfpText');
 
-// async function initializeUsers() {
-//     const existing = localStorage.getItem('users');
-
-//     if (!existing) {
-//         // First time → load from JSON file
-//         const response = await fetch('./content/users.json');
-//         const users = await response.json();
-
-//         localStorage.setItem('users', JSON.stringify(users));
-//         console.log('Initialized users from JSON');
-//     } else {
-//         console.log('Users already initialized');
-//     }
-// }
-
-// await initializeUsers();
+await initializeUsers();
+await initializePosts();
 
 function loadUserData() {
 
@@ -57,6 +43,7 @@ function loadUserData() {
     followersCount.textContent = user.followersCount;
     followingCount.textContent = user.followingCount;
     postsCount.textContent = user.postsCount;
+    pfpText.textContent = user.username[0];
 
 }
 

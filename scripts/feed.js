@@ -1,8 +1,15 @@
 // Standard Javascript logic for the News Feed!
 // (Assuming library.js and nanoid.js are included as standard <script> tags above this in the HTML file)
 
+import { initializeUsers, initializePosts, getUser, getPostsSortChronologically } from "./library.js";
+
+await initializeUsers();
+await initializePosts();
+
 // Run immediately to load the feed once the script is parsed at the bottom of the body
 loadFeed();
+
+console.log(getPostsSortChronologically());
 
 function loadFeed() {
     let feedContainer = document.getElementById('feed-container');

@@ -3,8 +3,11 @@
 import { nanoid } from "./nanoid.js";
 
 export {
+    initializeUsers,
+    initializePosts,
     newUser,
     getUser,
+    getPost,
     doesUserExist,
     login,
     createPost,
@@ -30,8 +33,24 @@ export {
     sha256
 }
 
-async function test() {
-    console.log(await sha256("password123"));
+async function initializeUsers() {
+
+    const response = await fetch('./content/users.json');
+    const users = await response.json();
+
+    localStorage.setItem('users', JSON.stringify(users));
+    console.log('Initialized users from JSON');
+
+}
+
+async function initializePosts() {
+
+    const response = await fetch('./content/posts.json');
+    const posts = await response.json();
+
+    localStorage.setItem('posts', JSON.stringify(posts));
+    console.log('Initialized posts from JSON');
+
 }
 
 async function newUser(username, email, password) {
@@ -65,6 +84,14 @@ function getUser(userID) {
     const users = readUsersJSON();
 
     return users.find((e) => e.userID === userID);
+
+}
+
+function getPost(postID) {
+
+    const posts = readPostsJSON();
+
+    return posts.find((e) => e.postID === postID);
 
 }
 
