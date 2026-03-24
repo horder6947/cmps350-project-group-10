@@ -1,4 +1,10 @@
-import { initializeUsers, initializePosts, getUser, readUsersJSON, changeBio, changeUsername } from "./library.js";
+import {
+    initializeUsers,
+    initializePosts,
+    getUser,
+    changeBio,
+    changeUsername
+} from "./library.js";
 
 if (!localStorage.getItem('users')) {
     await initializeUsers();
@@ -39,13 +45,8 @@ function getCurrentUserID() {
         return storedUserID;
     }
 
-    const users = readUsersJSON();
-    if (users.length === 0) {
-        return null;
-    }
-
-    localStorage.setItem('currentUserID', users[0].userID);
-    return users[0].userID;
+    localStorage.setItem('currentUserID', "KRo53fKY5l");
+    return "KRo53fKY5l";
 }
 
 function loadUserData() {
