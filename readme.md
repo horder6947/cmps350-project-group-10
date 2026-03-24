@@ -20,5 +20,5 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 | User Profile                  | [Sharif]      | [started]     | display followers and following accounts |
 | Layout & Responsiveness       | [khaled]      | [not done]    |                                   |
 | Design & Consistency          | [yacine]      | [started]     | add dark mode                     |
-| Data Handling                 | [khaled]      | [almost]      | more testing needed, address security issues, add getPostsByUserID function and sorting functions |
+| Data Handling                 | [khaled]      | [done]        |                                   |
 | Javascript Backend/Scripts    | [all]         | [started]     |                                   |

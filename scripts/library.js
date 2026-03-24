@@ -25,13 +25,11 @@ export {
     getPostsByAuthorID,
     getFollowers,
     getFollowing,
-    getPostsSortByLikes,
-    getPostsSortByComments,
-    getPostsSortChronologically,
+    sortPostsByLikes,
+    sortPostsByComments,
+    sortPostsChronologically,
     getFollowingPosts,
-    readUsersJSON,
-    readPostsJSON,
-    sha256
+    getAllPosts
 }
 
 async function initializeUsers() {
@@ -379,50 +377,74 @@ function changeUsername(userID, username) {
 
 }
 
+// returns true if password changed, false if old password incorrect or userID invalid
 async function changePassword(userID, oldPassword, newPassword) {
 
     const users = readUsersJSON();
     const user = users.find((e) => e.userID === userID);
 
-    if (user.password === await sha256(oldPassword)) {
-        user.password = await sha256(newPassword);
-        writeUsersJSON(users);
-        return true;
-    } else {
+    if (!user)
         return false;
-    }
+
+    if (user.passwordSHA256 !== await sha256(oldPassword))
+        return false;
+
+    user.passwordSHA256 = await sha256(newPassword);
+    writeUsersJSON(users);
+    return true;
 
 }
 
+// returns all post objects by a specific userID if found, and undefined if userID is invalid
 function getPostsByAuthorID(authorID) {
 
     const users = readUsersJSON();
     const posts = readPostsJSON();
-    const authorPostsIDs = users.find((e) => e.userID === authorID).posts;
+
+    const user = users.find((e) => e.userID === authorID);
+
+    if (!user)
+        return;
+
+    const authorPostsIDs = user.posts;
 
     return posts.filter((e) => authorPostsIDs.includes(e.postID));
 
 }
 
+// returns all follower objects, or undefined if userID is invalid
 function getFollowers(userID) {
 
     const users = readUsersJSON();
-    const followersIDs = users.find((e) => e.userID === userID).followers;
+    const user = users.find((e) => e.userID === userID);
+
+    if (!user)
+        return;
+
+    const followersIDs = user.followers;
 
     return users.filter((e) => followersIDs.includes(e.userID));
 
 }
 
+// returns all following objects, or undefined if userID is invalid
 function getFollowing(userID) {
 
     const users = readUsersJSON();
-    const followingIDs = users.find((e) => e.userID === userID).following;
+    const user = users.find((e) => e.userID === userID);
+
+    if (!user)
+        return;
+
+    const followingIDs = user.following;
 
     return users.filter((e) => followingIDs.includes(e.userID));
 
+
 }
 
-function getPostsSortByLikes(posts, descending = true) {
+// receives, sorts, and returns posts objects, returns undefined if posts parameter is invalid
+function sortPostsByLikes(posts, descending = true) {
 
     if (!posts)
         return;
@@ -431,7 +453,8 @@ function getPostsSortByLikes(posts, descending = true) {
 
 }
 
-function getPostsSortByComments(posts, descending = true) {
+// receives, sorts, and returns posts objects, returns undefined if posts parameter is invalid
+function sortPostsByComments(posts, descending = true) {
 
     if (!posts)
         return;
@@ -440,7 +463,8 @@ function getPostsSortByComments(posts, descending = true) {
 
 }
 
-function getPostsSortChronologically(posts, descending = true) {
+// receives, sorts, and returns posts objects, returns undefined if posts parameter is invalid
+function sortPostsChronologically(posts, descending = true) {
 
     if (!posts)
         return;
@@ -449,6 +473,7 @@ function getPostsSortChronologically(posts, descending = true) {
 
 }
 
+// returns all posts by user's followers, returns undefined if userID is invalid
 function getFollowingPosts(userID) {
 
     const users = readUsersJSON();
@@ -467,92 +492,98 @@ function getFollowingPosts(userID) {
 
 }
 
+// returns all posts
+function getAllPosts() {
+
+    return readPostsJSON();
+
+}
 
 
 /////////////////////////////////////////////////////////
 
-// function readUsersJSON() {
-//     const fs = require('fs');
-//     const path = '../content/users.json';
-//     const content = fs.readFileSync(path, 'utf-8');
+function readUsersJSON() {
+    const fs = require('fs');
+    const path = '../content/users.json';
+    const content = fs.readFileSync(path, 'utf-8');
 
-//     const contentObject = JSON.parse(content);
+    const contentObject = JSON.parse(content);
 
-//     return contentObject;
-// }
+    return contentObject;
+}
 
-// function writeUsersJSON(users) {
-//     const newContent = JSON.stringify(users, null, 4);
+function writeUsersJSON(users) {
+    const newContent = JSON.stringify(users, null, 4);
 
-//     const fs = require('fs');
-//     const path = '../content/users.json';
+    const fs = require('fs');
+    const path = '../content/users.json';
 
-//     fs.writeFileSync(path, newContent, 'utf-8');
-// }
+    fs.writeFileSync(path, newContent, 'utf-8');
+}
 
-// function readPostsJSON() {
-//     const fs = require('fs');
-//     const path = '../content/posts.json';
-//     const content = fs.readFileSync(path, 'utf-8');
+function readPostsJSON() {
+    const fs = require('fs');
+    const path = '../content/posts.json';
+    const content = fs.readFileSync(path, 'utf-8');
 
-//     const contentObject = JSON.parse(content);
+    const contentObject = JSON.parse(content);
 
-//     return contentObject;
-// }
+    return contentObject;
+}
 
-// function writePostsJSON(posts) {
-//     const newContent = JSON.stringify(posts, null, 4);
+function writePostsJSON(posts) {
+    const newContent = JSON.stringify(posts, null, 4);
 
-//     const fs = require('fs');
-//     const path = '../content/posts.json';
+    const fs = require('fs');
+    const path = '../content/posts.json';
 
-//     fs.writeFileSync(path, newContent, 'utf-8');
-// }
+    fs.writeFileSync(path, newContent, 'utf-8');
+}
 
-// function sha256(input) {
-//     const crypto = require('crypto');
-//     const hash = crypto.createHash('sha256');
-//     hash.update(input);
-//     return hash.digest('hex');
-// }
+function sha256(input) {
+    const crypto = require('crypto');
+    const hash = crypto.createHash('sha256');
+    hash.update(input);
+    return hash.digest('hex');
+}
 
 //// THE ABOVE CODE WORKS FOR NODE JS (USE FOR TESTING ONLY)
 //// THE BELOW CODE WORKS ON BROWSERS
 
-function readUsersJSON() {
-    const data = localStorage.getItem('users');
-    return data ? JSON.parse(data) : [];
-}
+// function readUsersJSON() {
+//     const data = localStorage.getItem('users');
+//     return data ? JSON.parse(data) : [];
+// }
 
-function writeUsersJSON(users) {
-    localStorage.setItem('users', JSON.stringify(users));
-}
+// function writeUsersJSON(users) {
+//     localStorage.setItem('users', JSON.stringify(users));
+// }
 
-function readPostsJSON() {
-    const data = localStorage.getItem('posts');
-    return data ? JSON.parse(data) : [];
-}
+// function readPostsJSON() {
+//     const data = localStorage.getItem('posts');
+//     return data ? JSON.parse(data) : [];
+// }
 
-function writePostsJSON(posts) {
-    localStorage.setItem('posts', JSON.stringify(posts));
-}
+// function writePostsJSON(posts) {
+//     localStorage.setItem('posts', JSON.stringify(posts));
+// }
 
-// Must be called from an async function like this: 'await sha256("example")'
-async function sha256(input) {
-    // Convert string to Uint8Array
-    const encoder = new TextEncoder();
-    const data = encoder.encode(input);
+// // Must be called from an async function like this: 'await sha256("example")'
+// async function sha256(input) {
+//     // Convert string to Uint8Array
+//     const encoder = new TextEncoder();
+//     const data = encoder.encode(input);
 
-    // Hash the data
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+//     // Hash the data
+//     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
 
-    // Convert buffer to hex string
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('');
+//     // Convert buffer to hex string
+//     const hashArray = Array.from(new Uint8Array(hashBuffer));
+//     const hashHex = hashArray
+//         .map(b => b.toString(16).padStart(2, '0'))
+//         .join('');
 
-    return hashHex;
-}
+//     return hashHex;
+// }
 
 /////////////////////////////////////////////////////////
