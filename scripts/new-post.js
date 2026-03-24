@@ -1,63 +1,84 @@
-import { initializeUsers, initializePosts, createPost, getUser, readUsersJSON } from "./library.js";
+import { initializeUsers, initializePosts, createPost, getUser } from "./library.js";
 
-if (!localStorage.getItem('users')) {
+if (!localStorage.getItem("users")) {
     await initializeUsers();
 }
 
-if (!localStorage.getItem('posts')) {
+if (!localStorage.getItem("posts")) {
     await initializePosts();
 }
 
-const params = new URL(window.location.href).searchParams;
-const form = document.getElementById("new-post-form");
-const postContentInput = document.getElementById("post-content");
-const message = document.getElementById("new-post-message");
+const elements = {
+    form: document.getElementById("new-post-form"),
+    contentInput: document.getElementById("post-content"),
+    submitButton: document.getElementById("publish-btn"),
+    statusText: document.getElementById("new-post-message")
+};
 
-function getCurrentUserID() {
-    const paramUserID = params.get("userid");
+bootComposerPage();
 
-    if (paramUserID && getUser(paramUserID)) {
-        localStorage.setItem("currentUserID", paramUserID);
-        return paramUserID;
+function bootComposerPage() {
+    const activeUserID = resolveActiveUserID();
+
+    if (!activeUserID) {
+        setComposerDisabled(true);
+        setStatus("No logged-in user found. Please log in first.");
     }
 
-    const storedUserID = localStorage.getItem("currentUserID");
-    if (storedUserID && getUser(storedUserID)) {
-        return storedUserID;
-    }
+    elements.form.addEventListener("submit", handlePostSubmit);
+    elements.contentInput.addEventListener("input", clearStatusOnTyping);
+}
 
-    const users = readUsersJSON();
-    if (users.length === 0) {
+function resolveActiveUserID() {
+    const savedUserID = localStorage.getItem("currentUserID");
+
+    if (!savedUserID) {
         return null;
     }
 
-    localStorage.setItem("currentUserID", users[0].userID);
-    return users[0].userID;
+    if (!getUser(savedUserID)) {
+        return null;
+    }
+
+    return savedUserID;
 }
 
-form.addEventListener("submit", function (event) {
+function setComposerDisabled(disabled) {
+    elements.contentInput.disabled = disabled;
+    elements.submitButton.disabled = disabled;
+}
+
+function setStatus(text) {
+    elements.statusText.textContent = text;
+}
+
+function clearStatusOnTyping() {
+    if (elements.statusText.textContent) {
+        elements.statusText.textContent = "";
+    }
+}
+
+function handlePostSubmit(event) {
     event.preventDefault();
 
-    const userID = getCurrentUserID();
-    const content = postContentInput.value;
-    const trimmedContent = content.trim();
+    const activeUserID = resolveActiveUserID();
+    const postContent = elements.contentInput.value.trim();
 
-    if (!userID) {
-        message.textContent = "No user found. Please initialize users first.";
+    if (!activeUserID) {
+        setStatus("No logged-in user found. Please log in first.");
         return;
     }
 
-    if (!trimmedContent) {
-        message.textContent = "Post cannot be empty.";
+    if (!postContent) {
+        setStatus("Post cannot be empty.");
         return;
     }
 
-    const createdPostID = createPost(userID, trimmedContent);
-
-    if (!createdPostID) {
-        message.textContent = "Post cannot be empty.";
+    const newPostID = createPost(activeUserID, postContent);
+    if (!newPostID) {
+        setStatus("Unable to publish post. Try again.");
         return;
     }
 
-    window.location.href = "feed.html?userid=" + encodeURIComponent(userID);
-});
+    window.location.href = "feed.html";
+}
