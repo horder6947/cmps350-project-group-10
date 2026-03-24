@@ -2,12 +2,15 @@ import {
     initializeUsers,
     initializePosts,
     getUser,
-    getPostsSortChronologically,
+    sortPostsChronologically,
+    sortPostsByComments,
+    sortPostsByLikes,
+    getFollowingPosts,
+    getAllPosts,
     likePost,
     removeLike,
     commentOnPost,
-    deletePost,
-    readUsersJSON
+    deletePost
 } from "./library.js";
 
 if (!localStorage.getItem('users')) {
@@ -21,33 +24,24 @@ if (!localStorage.getItem('posts')) {
 loadFeed();
 
 function getCurrentUserID() {
-    const params = new URL(window.location.href).searchParams;
-    const paramUserID = params.get("userid");
-
-    if (paramUserID && getUser(paramUserID)) {
-        localStorage.setItem("currentUserID", paramUserID);
-        return paramUserID;
-    }
 
     const storedUserID = localStorage.getItem("currentUserID");
     if (storedUserID && getUser(storedUserID)) {
         return storedUserID;
     }
 
-    const users = readUsersJSON();
-    if (users.length === 0) {
-        return null;
-    }
-
-    localStorage.setItem("currentUserID", users[0].userID);
-    return users[0].userID;
+    return null;
 }
 
 function loadFeed() {
     const currentUserID = getCurrentUserID();
     let feedContainer = document.getElementById('feed-container');
+    let posts;
 
-    let posts = getPostsSortChronologically();
+    if (currentUserID)
+        posts = sortPostsChronologically(getFollowingPosts(currentUserID));
+    else
+        posts = sortPostsChronologically(getAllPosts());
 
     if (posts.length === 0) {
         let exampleHtml = '';

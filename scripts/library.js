@@ -502,88 +502,88 @@ function getAllPosts() {
 
 /////////////////////////////////////////////////////////
 
-function readUsersJSON() {
-    const fs = require('fs');
-    const path = '../content/users.json';
-    const content = fs.readFileSync(path, 'utf-8');
+// function readUsersJSON() {
+//     const fs = require('fs');
+//     const path = '../content/users.json';
+//     const content = fs.readFileSync(path, 'utf-8');
 
-    const contentObject = JSON.parse(content);
+//     const contentObject = JSON.parse(content);
 
-    return contentObject;
-}
+//     return contentObject;
+// }
 
-function writeUsersJSON(users) {
-    const newContent = JSON.stringify(users, null, 4);
+// function writeUsersJSON(users) {
+//     const newContent = JSON.stringify(users, null, 4);
 
-    const fs = require('fs');
-    const path = '../content/users.json';
+//     const fs = require('fs');
+//     const path = '../content/users.json';
 
-    fs.writeFileSync(path, newContent, 'utf-8');
-}
+//     fs.writeFileSync(path, newContent, 'utf-8');
+// }
 
-function readPostsJSON() {
-    const fs = require('fs');
-    const path = '../content/posts.json';
-    const content = fs.readFileSync(path, 'utf-8');
+// function readPostsJSON() {
+//     const fs = require('fs');
+//     const path = '../content/posts.json';
+//     const content = fs.readFileSync(path, 'utf-8');
 
-    const contentObject = JSON.parse(content);
+//     const contentObject = JSON.parse(content);
 
-    return contentObject;
-}
+//     return contentObject;
+// }
 
-function writePostsJSON(posts) {
-    const newContent = JSON.stringify(posts, null, 4);
+// function writePostsJSON(posts) {
+//     const newContent = JSON.stringify(posts, null, 4);
 
-    const fs = require('fs');
-    const path = '../content/posts.json';
+//     const fs = require('fs');
+//     const path = '../content/posts.json';
 
-    fs.writeFileSync(path, newContent, 'utf-8');
-}
+//     fs.writeFileSync(path, newContent, 'utf-8');
+// }
 
-function sha256(input) {
-    const crypto = require('crypto');
-    const hash = crypto.createHash('sha256');
-    hash.update(input);
-    return hash.digest('hex');
-}
+// function sha256(input) {
+//     const crypto = require('crypto');
+//     const hash = crypto.createHash('sha256');
+//     hash.update(input);
+//     return hash.digest('hex');
+// }
 
 //// THE ABOVE CODE WORKS FOR NODE JS (USE FOR TESTING ONLY)
 //// THE BELOW CODE WORKS ON BROWSERS
 
-// function readUsersJSON() {
-//     const data = localStorage.getItem('users');
-//     return data ? JSON.parse(data) : [];
-// }
+function readUsersJSON() {
+    const data = localStorage.getItem('users');
+    return data ? JSON.parse(data) : [];
+}
 
-// function writeUsersJSON(users) {
-//     localStorage.setItem('users', JSON.stringify(users));
-// }
+function writeUsersJSON(users) {
+    localStorage.setItem('users', JSON.stringify(users));
+}
 
-// function readPostsJSON() {
-//     const data = localStorage.getItem('posts');
-//     return data ? JSON.parse(data) : [];
-// }
+function readPostsJSON() {
+    const data = localStorage.getItem('posts');
+    return data ? JSON.parse(data) : [];
+}
 
-// function writePostsJSON(posts) {
-//     localStorage.setItem('posts', JSON.stringify(posts));
-// }
+function writePostsJSON(posts) {
+    localStorage.setItem('posts', JSON.stringify(posts));
+}
 
-// // Must be called from an async function like this: 'await sha256("example")'
-// async function sha256(input) {
-//     // Convert string to Uint8Array
-//     const encoder = new TextEncoder();
-//     const data = encoder.encode(input);
+// Must be called from an async function like this: 'await sha256("example")'
+async function sha256(input) {
+    // Convert string to Uint8Array
+    const encoder = new TextEncoder();
+    const data = encoder.encode(input);
 
-//     // Hash the data
-//     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    // Hash the data
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
 
-//     // Convert buffer to hex string
-//     const hashArray = Array.from(new Uint8Array(hashBuffer));
-//     const hashHex = hashArray
-//         .map(b => b.toString(16).padStart(2, '0'))
-//         .join('');
+    // Convert buffer to hex string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
 
-//     return hashHex;
-// }
+    return hashHex;
+}
 
 /////////////////////////////////////////////////////////
