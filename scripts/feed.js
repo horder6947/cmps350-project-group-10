@@ -1,23 +1,54 @@
-// Standard Javascript logic for the News Feed!
-// (Assuming library.js and nanoid.js are included as standard <script> tags above this in the HTML file)
+import {
+    initializeUsers,
+    initializePosts,
+    getUser,
+    getPostsSortChronologically,
+    likePost,
+    removeLike,
+    commentOnPost,
+    deletePost,
+    readUsersJSON
+} from "./library.js";
 
-import { initializeUsers, initializePosts, getUser, getPostsSortChronologically } from "./library.js";
+if (!localStorage.getItem('users')) {
+    await initializeUsers();
+}
 
-await initializeUsers();
-await initializePosts();
+if (!localStorage.getItem('posts')) {
+    await initializePosts();
+}
 
-// Run immediately to load the feed once the script is parsed at the bottom of the body
 loadFeed();
 
-console.log(getPostsSortChronologically());
+function getCurrentUserID() {
+    const params = new URL(window.location.href).searchParams;
+    const paramUserID = params.get("userid");
+
+    if (paramUserID && getUser(paramUserID)) {
+        localStorage.setItem("currentUserID", paramUserID);
+        return paramUserID;
+    }
+
+    const storedUserID = localStorage.getItem("currentUserID");
+    if (storedUserID && getUser(storedUserID)) {
+        return storedUserID;
+    }
+
+    const users = readUsersJSON();
+    if (users.length === 0) {
+        return null;
+    }
+
+    localStorage.setItem("currentUserID", users[0].userID);
+    return users[0].userID;
+}
 
 function loadFeed() {
+    const currentUserID = getCurrentUserID();
     let feedContainer = document.getElementById('feed-container');
 
-    // get posts from local storage array in library
     let posts = getPostsSortChronologically();
 
-    // if there are no posts show an example post
     if (posts.length === 0) {
         let exampleHtml = '';
         exampleHtml += '<article class="card post-card">';
@@ -38,53 +69,111 @@ function loadFeed() {
         return;
     }
 
-    // clear the placeholder or loading text
     feedContainer.innerHTML = '';
 
-    // loop through the posts with a regular for loop (no map/forEach needed)
     for (let i = 0; i < posts.length; i++) {
         let post = posts[i];
-
-        // Use the global function from library.js
         let author = getUser(post.authorID);
 
-        // if user was deleted or something went wrong
         if (author == null) {
             author = { username: 'UnknownUser' };
         }
 
-        // format the timestamp to readable text natively
         let postDate = new Date(post.createdTimestamp).toLocaleString();
+        const hasLiked = currentUserID ? post.likes.includes(currentUserID) : false;
 
         let article = document.createElement('article');
         article.className = 'card post-card';
 
-        // building the HTML string using string concatenation (very reliable student approach)
         let html = '';
         html += '<header class="post-header">';
-        html += '  <a href="profile.html?id=' + post.authorID + '" class="post-author">@' + author.username + '</a>';
+        html += '  <a href="profile.html?userid=' + post.authorID + '" class="post-author">@' + author.username + '</a>';
         html += '  <span class="post-time">' + postDate + '</span>';
         html += '</header>';
         html += '<div class="post-content">';
         html += '  <p>' + post.postContent + '</p>';
         html += '</div>';
         html += '<footer class="post-actions">';
-        html += '  <button class="btn like-btn">Like (' + post.likesCount + ')</button>';
+        html += '  <button class="btn like-btn">' + (hasLiked ? 'Unlike' : 'Like') + ' (' + post.likesCount + ')</button>';
         html += '  <button class="btn comment-btn">Comment (' + post.comments.length + ')</button>';
+        if (currentUserID && currentUserID === post.authorID) {
+            html += '  <button class="btn delete-btn">Delete</button>';
+        }
         html += '</footer>';
+        html += '<div class="comments-container"></div>';
 
-        // inject our built string
         article.innerHTML = html;
 
-        // make the like button specifically work for this single post in the loop
         let likeBtn = article.querySelector('.like-btn');
+        let commentBtn = article.querySelector('.comment-btn');
+        let commentsContainer = article.querySelector('.comments-container');
+
+        renderComments(post, commentsContainer);
+
         likeBtn.onclick = function () {
-            // using a dummy user for now since actual login sessions aren't built yet
-            likePost('guest_user', post.postID);
-            loadFeed(); // reload immediately so the HTML number updates
+            if (!currentUserID) {
+                alert('No active user found.');
+                return;
+            }
+
+            if (post.likes.includes(currentUserID)) {
+                removeLike(currentUserID, post.postID);
+            } else {
+                likePost(currentUserID, post.postID);
+            }
+
+            loadFeed();
         };
 
-        // finally, attach our finished article box to the feed
+        commentBtn.onclick = function () {
+            if (!currentUserID) {
+                alert('No active user found.');
+                return;
+            }
+
+            const commentText = prompt('Write your comment:');
+            if (commentText === null) return;
+
+            if (!commentText.trim()) {
+                alert('Comment cannot be empty.');
+                return;
+            }
+
+            commentOnPost(currentUserID, post.postID, commentText);
+            loadFeed();
+        };
+
+        let deleteBtn = article.querySelector('.delete-btn');
+        if (deleteBtn) {
+            deleteBtn.onclick = function () {
+                const confirmed = confirm('Delete this post?');
+                if (!confirmed) return;
+
+                deletePost(post.postID);
+                loadFeed();
+            };
+        }
+
         feedContainer.appendChild(article);
     }
+}
+
+function renderComments(post, container) {
+    if (!post.comments || post.comments.length === 0) {
+        container.innerHTML = '';
+        return;
+    }
+
+    let commentsHtml = '<div class="comments-list">';
+
+    for (let i = 0; i < post.comments.length; i++) {
+        const commentItem = post.comments[i];
+        const commentAuthor = getUser(commentItem.authorID);
+        const username = commentAuthor ? commentAuthor.username : 'UnknownUser';
+
+        commentsHtml += '<p class="comment-item"><strong>@' + username + ':</strong> ' + commentItem.comment + '</p>';
+    }
+
+    commentsHtml += '</div>';
+    container.innerHTML = commentsHtml;
 }
