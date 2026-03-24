@@ -30,8 +30,24 @@
                 <div class="avatar-row">
                     <div class="avatar" id="pfpText">{}</div>
                     <div class="profile-actions">
-                        <button type="button" class="btn btn-primary">Edit profile</button>
+                        <button type="button" class="btn btn-primary" id="editProfileBtn">Edit profile</button>
                         <a class="btn btn-secondary" href="feed.html">View feed</a>
+                    </div>
+                </div>
+
+                <div id="editModal" class="modal" hidden>
+                    <div class="modal-content">
+                        <h3>Edit profile</h3>
+                        <form id="editProfileForm">
+                            <label for="editUsername">Username</label>
+                            <input type="text" id="editUsername" required minlength="1">
+                            <label for="editBio">Bio</label>
+                            <textarea id="editBio" rows="3"></textarea>
+                            <div class="modal-actions">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-secondary" id="cancelEditBtn">Cancel</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 

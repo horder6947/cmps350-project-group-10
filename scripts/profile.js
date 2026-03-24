@@ -1,23 +1,4 @@
-import { initializeUsers, initializePosts, getUser } from "./library.js";
-
-// Get the full current URL
-const currentUrl = new URL(window.location.href);
-// Access the searchParams property, which is a URLSearchParams object
-const searchParams = currentUrl.searchParams;
-
-const userIDParam = searchParams.get('userid');
-const loggedInIDParam = searchParams.get('loggedin');
-
-// const users = readUsersJSON();
-
-const username = document.getElementById('username');
-const userid = document.getElementById('userid');
-const email = document.getElementById('email');
-const bio = document.getElementById('bio');
-const followersCount = document.getElementById('followersCount');
-const followingCount = document.getElementById('followingCount');
-const postsCount = document.getElementById('postsCount');
-const pfpText = document.getElementById('pfpText');
+import { initializeUsers, initializePosts, getUser, readUsersJSON, changeBio, changeUsername } from "./library.js";
 
 if (!localStorage.getItem('users')) {
     await initializeUsers();
@@ -27,31 +8,113 @@ if (!localStorage.getItem('posts')) {
     await initializePosts();
 }
 
-function loadUserData() {
+const params = new URL(window.location.href).searchParams;
+const userIDParam = params.get('userid');
 
-    if (!userIDParam) {
-        alert('Invalid URL Parameter');
+const username = document.getElementById('username');
+const userid = document.getElementById('userid');
+const email = document.getElementById('email');
+const bio = document.getElementById('bio');
+const followersCount = document.getElementById('followersCount');
+const followingCount = document.getElementById('followingCount');
+const postsCount = document.getElementById('postsCount');
+const pfpText = document.getElementById('pfpText');
+const editProfileBtn = document.getElementById('editProfileBtn');
+const editModal = document.getElementById('editModal');
+const editProfileForm = document.getElementById('editProfileForm');
+const editUsernameInput = document.getElementById('editUsername');
+const editBioInput = document.getElementById('editBio');
+const cancelEditBtn = document.getElementById('cancelEditBtn');
+
+editModal.hidden = true;
+
+function getCurrentUserID() {
+    if (userIDParam && getUser(userIDParam)) {
+        localStorage.setItem('currentUserID', userIDParam);
+        return userIDParam;
+    }
+
+    const storedUserID = localStorage.getItem('currentUserID');
+    if (storedUserID && getUser(storedUserID)) {
+        return storedUserID;
+    }
+
+    const users = readUsersJSON();
+    if (users.length === 0) {
+        return null;
+    }
+
+    localStorage.setItem('currentUserID', users[0].userID);
+    return users[0].userID;
+}
+
+function loadUserData() {
+    const profileUserID = getCurrentUserID();
+
+    if (!profileUserID) {
+        alert('No user found Please log in first.');
+        window.location.href = 'login.html';
         return;
     }
 
-    const user = getUser(userIDParam);
+    const user = getUser(profileUserID);
 
     if (!user) {
-        alert('Invalid UserID');
+        alert('Invalid user.');
+        window.location.href = 'feed.html';
         return;
     }
 
     username.textContent = user.username;
-    userid.textContent = "@" + user.userID;
+    userid.textContent = '@' + user.username;
     email.textContent = user.email;
-    bio.textContent = user.bio;
+    bio.textContent = user.bio || 'No bio';
     followersCount.textContent = user.followersCount;
     followingCount.textContent = user.followingCount;
     postsCount.textContent = user.postsCount;
     pfpText.textContent = user.username[0];
 
+    const currentUserID = getCurrentUserID();
+    if (profileUserID === currentUserID) {
+        editProfileBtn.style.display = '';
+    } else {
+        editProfileBtn.style.display = 'none';
+    }
+
+    return profileUserID;
 }
 
-loadUserData();
+let currentProfileUserID = null;
 
-// console.log(await sha256("password123"));
+function openEditModal() {
+    const user = getUser(currentProfileUserID);
+
+    editUsernameInput.value = user.username;
+    editBioInput.value = user.bio || '';
+    editModal.hidden = false;
+}
+
+function closeEditModal() {
+    editModal.hidden = true;
+}
+
+editProfileForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const newUsername = editUsernameInput.value.trim();
+    if (!newUsername) {
+        alert('Username cannot be empty.');
+        return;
+    }
+
+    changeUsername(currentProfileUserID, newUsername);
+    changeBio(currentProfileUserID, editBioInput.value.trim());
+
+    closeEditModal();
+    loadUserData();
+});
+
+cancelEditBtn.addEventListener('click', closeEditModal);
+editProfileBtn.addEventListener('click', openEditModal);
+
+currentProfileUserID = loadUserData();
