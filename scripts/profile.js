@@ -19,8 +19,13 @@ const followingCount = document.getElementById('followingCount');
 const postsCount = document.getElementById('postsCount');
 const pfpText = document.getElementById('pfpText');
 
-await initializeUsers();
-await initializePosts();
+if (!localStorage.getItem('users')) {
+    await initializeUsers();
+}
+
+if (!localStorage.getItem('posts')) {
+    await initializePosts();
+}
 
 function loadUserData() {
 
