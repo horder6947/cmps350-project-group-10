@@ -72,5 +72,19 @@
         "posts": [
             "vVOE-vS2jX70hCleDG5s"
         ]
+    },
+    {
+        "userID": "ILgNFhEHVu",
+        "username": "user4",
+        "email": "user5@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "",
+        "createdTimestamp": 1774360696721,
+        "followersCount": 0,
+        "followingCount": 0,
+        "followers": [],
+        "following": [],
+        "postsCount": 0,
+        "posts": []
     }
 ]

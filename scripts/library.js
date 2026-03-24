@@ -28,6 +28,7 @@ export {
     getPostsSortByLikes,
     getPostsSortByComments,
     getPostsSortChronologically,
+    getFollowingPosts,
     readUsersJSON,
     readPostsJSON,
     sha256
@@ -53,7 +54,11 @@ async function initializePosts() {
 
 }
 
+// returns userID if user created and undefined if not created
 async function newUser(username, email, password) {
+
+    if (doesUserExist(email))
+        return;
 
     const users = readUsersJSON();
     const newUserID = nanoid(10);
@@ -79,6 +84,7 @@ async function newUser(username, email, password) {
 
 }
 
+// returns full user object if exists and false if not exists
 function getUser(userID) {
 
     const users = readUsersJSON();
@@ -87,6 +93,7 @@ function getUser(userID) {
 
 }
 
+// returns full post object if exists and false if not exists
 function getPost(postID) {
 
     const posts = readPostsJSON();
@@ -95,15 +102,18 @@ function getPost(postID) {
 
 }
 
+// returns userID if exists and undefined if not exists
 function doesUserExist(email) {
 
     const users = readUsersJSON();
-    if (users.find((e) => e.email === email))
-        return true;
-    return false;
+    const user = users.find((e) => e.email === email);
+    if (user)
+        return user.userID;
+    return;
 
 }
 
+// returns true if user logged in successfully
 async function login(email, password) {
 
     const users = readUsersJSON();
@@ -115,9 +125,15 @@ async function login(email, password) {
 
 }
 
+// returns postID if post created and undefined if not created
 function createPost(userID, postContent) {
 
     const posts = readPostsJSON();
+    const users = readUsersJSON();
+
+    if (!getUser(userID))
+        return;
+
     const newPostID = nanoid(20);
 
     posts.push({
@@ -133,8 +149,6 @@ function createPost(userID, postContent) {
 
     writePostsJSON(posts);
 
-    const users = readUsersJSON();
-
     const author = users.find((e) => e.userID === userID);
     author.postsCount += 1;
     author.posts.push(newPostID);
@@ -144,12 +158,13 @@ function createPost(userID, postContent) {
     return newPostID;
 }
 
+// returns true if found and deleted and false if not found
 function deletePost(postID) {
 
     const posts = readPostsJSON();
     const postIndex = posts.findIndex((e) => e.postID === postID);
 
-    if (postIndex === -1) return; // If the post is not found
+    if (postIndex === -1) return false; // If the post is not found
 
     const authorID = posts[postIndex].authorID;
     // const author = posts[postIndex].authorID;
@@ -167,38 +182,67 @@ function deletePost(postID) {
 
     writeUsersJSON(users);
 
+    return true;
+
 }
 
+// returns false if userID or postID is invalid or user already liked the post, returns true if post liked successfully
 function likePost(userID, postID) {
 
     const posts = readPostsJSON();
+    const users = readUsersJSON();
     const post = posts.find((e) => e.postID === postID);
+    const user = users.find((e) => e.userID === userID);
+
+    if (!post || !user)
+        return false;
+
+    if (post.likes.includes(user.userID))
+        return false;
 
     post.likesCount += 1;
     post.likes.push(userID);
 
     writePostsJSON(posts);
 
+    return true;
+
 }
 
+// returns false if userID or postID invalid or if user hasn't liked post, true otherwise
 function removeLike(userID, postID) {
 
     const posts = readPostsJSON();
+    const users = readUsersJSON();
     const postIndex = posts.findIndex((e) => e.postID === postID);
+    const user = users.find((e) => e.userID === userID);
 
-    if (postIndex === -1) return;
+    if (!user)
+        return false;
+
+    if (postIndex === -1)
+        return false;
 
     const post = posts[postIndex];
+
+    if (!post.likes.includes(user.userID))
+        return false;
+
     post.likesCount -= 1;
     post.likes.splice(post.likes.indexOf(userID), 1);
 
     writePostsJSON(posts);
 
+    return true;
+
 }
 
+// returns commentID if comment added or false if userID or postID invalid
 function commentOnPost(userID, postID, comment) {
 
     const posts = readPostsJSON();
+    const users = readUsersJSON();
+
     const commentID = nanoid(20);
     const newComment = {
         "commentID": commentID,
@@ -208,6 +252,11 @@ function commentOnPost(userID, postID, comment) {
     };
 
     const post = posts.find((e) => e.postID === postID);
+    const user = users.find((e) => e.userID === userID);
+
+    if (!user || !post)
+        return;
+
     post.comments.push(newComment);
 
     writePostsJSON(posts);
@@ -216,28 +265,39 @@ function commentOnPost(userID, postID, comment) {
 
 }
 
+// returns false if postID or commentID is invalid, true if comment deleted
 function deleteComment(postID, commentID) {
 
     const posts = readPostsJSON();
     const post = posts.find((e) => e.postID === postID);
 
-    console.log(posts);
+    if (!post)
+        return false;
 
     const commentIndex = post.comments.findIndex((e) => e.commentID === commentID);
-    if (commentIndex === -1) return;
+    if (commentIndex === -1) return false;
 
     post.comments.splice(commentIndex, 1);
     post.commentsCount -= 1;
 
     writePostsJSON(posts);
 
+    return true;
+
 }
 
+// returns false if either IDs is invalid or if follower already follows followee, true otherwise
 function follow(followerID, followeeID) {
 
     const users = readUsersJSON();
     const follower = users.find((e) => e.userID === followerID);
     const followee = users.find((e) => e.userID === followeeID);
+
+    if (!follower || !followee)
+        return false;
+
+    if (follower.following.includes(followeeID) || followee.followers.includes(followerID))
+        return false;
 
     follower.following.push(followeeID);
     follower.followingCount += 1;
@@ -246,13 +306,22 @@ function follow(followerID, followeeID) {
 
     writeUsersJSON(users);
 
+    return true;
+
 }
 
+// returns false if either IDs is invalid or follower is not currently following followee, true if unfollowed successfully
 function unfollow(followerID, followeeID) {
 
     const users = readUsersJSON();
     const follower = users.find((e) => e.userID === followerID);
     const followee = users.find((e) => e.userID === followeeID);
+
+    if (!followee || !follower)
+        return false;
+
+    if (!follower.following.includes(followee.userID) || !followee.followers.includes(follower.userID))
+        return false;
 
     let index = 0;
 
@@ -268,14 +337,24 @@ function unfollow(followerID, followeeID) {
 
     writeUsersJSON(users);
 
+    return true;
+
 }
 
+// returns false if userID invalid, true if bio changed
 function changeBio(userID, bio) {
 
     const users = readUsersJSON();
-    users.find((e) => e.userID === userID).bio = bio;
+    const user = users.find((e) => e.userID === userID);
+
+    if (!user)
+        return false;
+
+    user.bio = bio;
 
     writeUsersJSON(users);
+
+    return true;
 
 }
 
@@ -283,12 +362,20 @@ function addProfilePicture() {
     // ???
 }
 
+// returns false if userID invalid, true if username changed
 function changeUsername(userID, username) {
 
     const users = readUsersJSON();
-    users.find((e) => e.userID === userID).username = username;
+    const user = users.find((e) => e.userID === userID);
+
+    if (!user)
+        return false;
+
+    user.username = username;
 
     writeUsersJSON(users);
+
+    return true;
 
 }
 
@@ -335,28 +422,54 @@ function getFollowing(userID) {
 
 }
 
-function getPostsSortByLikes(descending = true) {
+function getPostsSortByLikes(posts, descending = true) {
 
-    const posts = readPostsJSON();
+    if (!posts)
+        return;
+
     return posts.sort((a, b) => descending ? b.likesCount - a.likesCount : a.likesCount - b.likesCount);
 
 }
 
-function getPostsSortByComments(descending = true) {
+function getPostsSortByComments(posts, descending = true) {
 
-    const posts = readPostsJSON();
+    if (!posts)
+        return;
+
     return posts.sort((a, b) => descending ? b.commentsCount - a.commentsCount : a.commentsCount - b.commentsCount);
 
 }
 
-function getPostsSortChronologically(descending = true) {
+function getPostsSortChronologically(posts, descending = true) {
 
-    const posts = readPostsJSON();
+    if (!posts)
+        return;
+
     return posts.sort((a, b) => descending ? b.createdTimestamp - a.createdTimestamp : a.createdTimestamp - b.createdTimestamp);
 
 }
 
+function getFollowingPosts(userID) {
 
+    const users = readUsersJSON();
+    const posts = readPostsJSON();
+
+    const user = users.find((e) => e.userID === userID);
+
+    if (!user)
+        return;
+
+    const following = user.following;
+
+    const followingPosts = posts.filter((e) => following.includes(e.authorID));
+
+    return followingPosts;
+
+}
+
+
+
+/////////////////////////////////////////////////////////
 
 // function readUsersJSON() {
 //     const fs = require('fs');
@@ -377,6 +490,35 @@ function getPostsSortChronologically(descending = true) {
 //     fs.writeFileSync(path, newContent, 'utf-8');
 // }
 
+// function readPostsJSON() {
+//     const fs = require('fs');
+//     const path = '../content/posts.json';
+//     const content = fs.readFileSync(path, 'utf-8');
+
+//     const contentObject = JSON.parse(content);
+
+//     return contentObject;
+// }
+
+// function writePostsJSON(posts) {
+//     const newContent = JSON.stringify(posts, null, 4);
+
+//     const fs = require('fs');
+//     const path = '../content/posts.json';
+
+//     fs.writeFileSync(path, newContent, 'utf-8');
+// }
+
+// function sha256(input) {
+//     const crypto = require('crypto');
+//     const hash = crypto.createHash('sha256');
+//     hash.update(input);
+//     return hash.digest('hex');
+// }
+
+//// THE ABOVE CODE WORKS FOR NODE JS (USE FOR TESTING ONLY)
+//// THE BELOW CODE WORKS ON BROWSERS
+
 function readUsersJSON() {
     const data = localStorage.getItem('users');
     return data ? JSON.parse(data) : [];
@@ -395,13 +537,6 @@ function writePostsJSON(posts) {
     localStorage.setItem('posts', JSON.stringify(posts));
 }
 
-// function sha256(input) {
-//     const crypto = require('crypto');
-//     const hash = crypto.createHash('sha256');
-//     hash.update(input);
-//     return hash.digest('hex');
-// }
-
 // Must be called from an async function like this: 'await sha256("example")'
 async function sha256(input) {
     // Convert string to Uint8Array
@@ -419,3 +554,5 @@ async function sha256(input) {
 
     return hashHex;
 }
+
+/////////////////////////////////////////////////////////

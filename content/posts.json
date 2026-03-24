@@ -59,7 +59,7 @@
         "createdTimestamp": 1773766159648,
         "likesCount": 0,
         "likes": [],
-        "commentsCount": 0,
+        "commentsCount": -1,
         "comments": [
             {
                 "commentID": "HGhGElYIrwBx1M-HKsGK",
