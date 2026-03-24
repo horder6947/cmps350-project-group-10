@@ -4,10 +4,9 @@
         "authorID": "KRo53fKY5l",
         "postContent": "Sample Post 1",
         "createdTimestamp": 1773764416271,
-        "likesCount": 2,
+        "likesCount": 1,
         "likes": [
-            "c7jvAWdXB5",
-            "uasT3a59C6"
+            "c7jvAWdXB5"
         ],
         "commentsCount": 1,
         "comments": [
@@ -59,7 +58,7 @@
         "createdTimestamp": 1773766159648,
         "likesCount": 0,
         "likes": [],
-        "commentsCount": -1,
+        "commentsCount": 1,
         "comments": [
             {
                 "commentID": "HGhGElYIrwBx1M-HKsGK",
