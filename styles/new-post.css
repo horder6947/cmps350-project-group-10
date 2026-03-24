@@ -1,7 +1,42 @@
-.card label {
-	display: inline-block;
+.composer-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	padding-bottom: var(--space-l);
+}
+
+.composer-card {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--space-m);
+	width: min(780px, 100%);
+	margin-inline: auto;
+}
+
+.composer-header {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.composer-header p {
+	color: var(--text-light);
+	font-size: 14px;
+}
+
+.composer-form {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--space-m);
+}
+
+.field-group {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 8px;
+}
+
+.field-group label {
 	font-weight: bold;
-	margin-bottom: 8px;
 }
 
 #post-content {
@@ -9,9 +44,15 @@
 	min-height: 140px;
 }
 
-.form-actions {
+.action-row {
 	display: flex;
+	flex-direction: column;
 	gap: 10px;
+}
+
+.action-row .btn {
+	width: 100%;
+	text-align: center;
 }
 
 .cancel-btn {
@@ -25,7 +66,37 @@
 	color: white;
 }
 
-.message {
-	margin-top: 12px;
+.status-text {
+	min-height: 20px;
+	margin-top: 4px;
 	color: var(--text-light);
+}
+
+@media (max-width: 640px) {
+	.new-post-page .nav-container {
+		padding: 0 var(--space-m);
+	}
+
+	.new-post-page .nav-links {
+		display: flex;
+		gap: 10px;
+	}
+}
+
+@media (min-width: 641px) {
+	.action-row {
+		flex-direction: row;
+		justify-content: flex-start;
+	}
+
+	.action-row .btn {
+		width: auto;
+		min-width: 150px;
+	}
+}
+
+@media (min-width: 900px) {
+	.composer-layout {
+		justify-items: center;
+	}
 }

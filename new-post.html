@@ -10,7 +10,7 @@
     <script type="module" src="scripts/new-post.js"></script>
 </head>
 
-<body>
+<body class="new-post-page">
     <nav class="top-nav">
         <div class="nav-container">
             <a class="nav-logo" href="feed.html">Social Feed</a>
@@ -23,22 +23,32 @@
         </div>
     </nav>
 
-    <main class="container">
-        <h2>Create a New Post</h2>
-        <br>
+    <main class="container composer-layout">
+        <section class="card composer-card">
+            <header class="composer-header">
+                <h2>Create a New Post</h2>
+                <p>Share an update with your network.</p>
+            </header>
 
-        <section class="card">
-            <form id="new-post-form">
-                <label for="post-content">Post content</label>
-                <textarea id="post-content" class="input-field" rows="6" maxlength="500"
-                    placeholder="What do you want to share?"></textarea>
+            <form id="new-post-form" class="composer-form">
+                <div class="field-group">
+                    <label for="post-content">Post content</label>
+                    <textarea
+                        id="post-content"
+                        class="input-field"
+                        rows="7"
+                        maxlength="500"
+                        placeholder="What do you want to share?"
+                    ></textarea>
+                </div>
 
-                <div class="form-actions">
-                    <button type="submit" class="btn">Publish Post</button>
+                <div class="action-row">
+                    <button type="submit" id="publish-btn" class="btn">Publish Post</button>
                     <a href="feed.html" class="btn cancel-btn">Cancel</a>
                 </div>
             </form>
-            <p id="new-post-message" class="message"></p>
+
+            <p id="new-post-message" class="status-text" aria-live="polite"></p>
         </section>
     </main>
 
