@@ -4,10 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>New Post</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/new-post.css">
+    <script type="module" src="scripts/new-post.js"></script>
 </head>
 
 <body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a class="nav-logo" href="feed.html">Social Feed</a>
+            <div class="nav-links">
+                <a href="feed.html">Feed</a>
+                <a href="new-post.html" class="active">New post</a>
+                <a href="profile.html">Profile</a>
+                <a href="login.html">Log out</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h2>Create a New Post</h2>
+        <br>
+
+        <section class="card">
+            <form id="new-post-form">
+                <label for="post-content">Post content</label>
+                <textarea id="post-content" class="input-field" rows="6" maxlength="500"
+                    placeholder="What do you want to share?"></textarea>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn">Publish Post</button>
+                    <a href="feed.html" class="btn cancel-btn">Cancel</a>
+                </div>
+            </form>
+            <p id="new-post-message" class="message"></p>
+        </section>
+    </main>
 
 </body>
 
