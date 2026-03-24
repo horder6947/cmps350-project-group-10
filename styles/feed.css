@@ -52,8 +52,36 @@
     border: 1px solid var(--blue);
 }
 
+.delete-btn {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--border);
+}
+
 .like-btn:hover,
 .comment-btn:hover {
     background-color: var(--blue);
     color: white;
+}
+
+.delete-btn:hover {
+    background-color: var(--text-light);
+    color: white;
+}
+
+.comments-container {
+    margin-top: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.comment-item {
+    font-size: 14px;
+    color: var(--text-dark);
 }
