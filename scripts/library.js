@@ -10,6 +10,7 @@ export {
     getPost,
     doesUserExist,
     login,
+    logout,
     createPost,
     deletePost,
     likePost,
@@ -111,15 +112,22 @@ function doesUserExist(email) {
 
 }
 
-// returns true if user logged in successfully
+// returns userID if user logged in successfully, undefined if not logged in
 async function login(email, password) {
 
     const users = readUsersJSON();
     const user = users.find((e) => e.email === email);
 
-    if (!user) return false;
+    if (!user) return;
 
-    return await sha256(password) === user.passwordSHA256;
+    if (await sha256(password) === user.passwordSHA256)
+        return user.userID;
+
+}
+
+function logout() {
+
+    localStorage.removeItem('currentUserID');
 
 }
 

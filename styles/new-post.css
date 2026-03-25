@@ -72,16 +72,6 @@
 	color: var(--text-light);
 }
 
-@media (max-width: 640px) {
-	.new-post-page .nav-container {
-		padding: 0 var(--space-m);
-	}
-
-	.new-post-page .nav-links {
-		display: flex;
-		gap: 10px;
-	}
-}
 
 @media (min-width: 641px) {
 	.action-row {

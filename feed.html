@@ -14,12 +14,13 @@
 <body>
     <nav class="top-nav">
         <div class="nav-container">
-            <a class="nav-logo" href="feed.html">Social Feed</a>
+            <a class="nav-logo" href="feed.html"><img src="chirp-logo.png" alt="Chirp" class="nav-logo-img">Chirp</a>
             <div class="nav-links">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
                 <a href="feed.html" class="active">Feed</a>
                 <a href="new-post.html">New post</a>
                 <a href="profile.html">Profile</a>
-                <a href="login.html">Log out</a>
+                <a id="logout" href="login.html">Log out</a>
             </div>
         </div>
     </nav>
@@ -33,6 +34,7 @@
             <p>Loading posts...</p>
         </section>
     </main>
+    <script src="scripts/theme-toggle.js"></script>
 </body>
 
 </html>

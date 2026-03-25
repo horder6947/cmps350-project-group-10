@@ -7,9 +7,24 @@
     <title>Login page</title>
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/login.css">
+    <script type="module" src="scripts/login.js"></script>
+
 </head>
 
 <body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a class="nav-logo" href="feed.html"><img src="chirp-logo.png" alt="Chirp" class="nav-logo-img">Chirp</a>
+            <div class="nav-links">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                <a href="feed.html">Feed</a>
+                <a href="new-post.html">New post</a>
+                <a href="profile.html">Profile</a>
+                <a id="logout" href="login.html" class="active">Log out</a>
+            </div>
+        </div>
+    </nav>
+
     <main class="page container">
         <div class="left-side">
             <h1>Sign in to your platform</h1>
@@ -19,22 +34,23 @@
         <section class="card">
             <div class="badge">Login</div>
             <h2>Sign in</h2>
-            <form action="feed.html" method="get">
-                <div>
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" class="input-field">
-                </div>
+            <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" class="input-field">
+            </div>
 
-                <div>
-                    <label for="password">Password</label>
-                    <input id="password" name="password" type="password" class="input-field">
-                </div>
+            <div>
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" class="input-field">
+            </div>
 
-                <button type="submit" class="btn">Login</button>
-            </form>
+            <button id="loginButton" class="btn">Login</button>
             <p>If you don't have an account, <a href="register.html">register here</a>.</p>
+            <p id="error">
+                {error_message}</p>
         </section>
     </main>
+    <script src="scripts/theme-toggle.js"></script>
 </body>
 
 </html>

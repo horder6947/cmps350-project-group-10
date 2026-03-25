@@ -1,4 +1,10 @@
-import { initializeUsers, initializePosts, createPost, getUser } from "./library.js";
+import {
+    initializeUsers,
+    initializePosts,
+    createPost,
+    getUser,
+    logout
+} from "./library.js";
 
 if (!localStorage.getItem("users")) {
     await initializeUsers();
@@ -14,6 +20,9 @@ const elements = {
     submitButton: document.getElementById("publish-btn"),
     statusText: document.getElementById("new-post-message")
 };
+
+const logoutBtn = document.getElementById("logout");
+logoutBtn.addEventListener('click', () => logout());
 
 bootComposerPage();
 
