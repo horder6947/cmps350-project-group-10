@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0ea5e9, #6366f1);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page {
+    width: 100%;
+    max-width: 860px;
+    padding: 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    color: #f9fafb;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 10px;
+}
+
+.left-side h1 {
+    margin: 0 0 10px;
+    font-size: 26px;
+    color: #f9fafb;
+}
+
+.left-side p {
+    margin: 0;
+    color: #e5e7eb;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 900px;
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+.card{
+    flex-grow: 1;
+}
+.card h2 {
+    margin: 0 0 16px;
+    font-size: 20px;
+    text-align: center;
+    color: #111827;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #374151;
+}
+
+.message {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 13px;
+    color: #b91c1c;
+}
+
+.small-text {
+    margin-top: 12px;
+    font-size: 13px;
+    text-align: center;
+    color: #4b5563;
+}
+
+.small-text a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.small-text a:hover {
+    text-decoration: underline;
+}
+
+input {
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .page {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .left-side {
+        padding-right: 0;
+        margin-bottom: 12px;
+    }
+}
+
