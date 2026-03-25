@@ -13,12 +13,12 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
  
 | Task                          | Assigned to   | Done?         | Comments                          |
 | :---------------------------- | :------------ | :------------ | :-------------------------------- |
-| User Registration & Login     | [Sharif]      | [started]     | implement js                      |
-| News Feed                     | [yacine]      | [started]     | add option to sort by likes/comments, add toggle to show from following only (requires extra function in library.js) |
+| User Registration & Login     | [Sharif]      | [almost]      | implement js for registration page|
+| News Feed                     | [yacine]      | [done]        |                                   |
 | Create/Delete Posts           | [Tameem]      | [done]        |                                   |
 | Like/Comment on a Post        | [Tameem]      | [done]        |                                   |
-| User Profile                  | [Sharif]      | [started]     | display followers and following accounts |
-| Layout & Responsiveness       | [khaled]      | [not done]    |                                   |
-| Design & Consistency          | [yacine]      | [started]     | add dark mode                     |
+| User Profile                  | [Sharif]      | [almost]      | add option for profile picture?   |
+| Layout & Responsiveness       | [all]         | [done]        |                                   |
+| Design & Consistency          | [yacine]      | [done]        |                                   |
 | Data Handling                 | [khaled]      | [done]        |                                   |
-| Javascript Backend/Scripts    | [all]         | [started]     |                                   |
+| Javascript Backend/Scripts    | [khaled]      | [almost]      | implement js for registration page|
