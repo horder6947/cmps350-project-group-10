@@ -10,45 +10,6 @@ body {
     padding: 20px 16px 30px;
 }
 
-.top-nav {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 24px;
-}
-
-.top-nav a.brand {
-    color: #f9fafb;
-    font-weight: 700;
-    font-size: 1 rem;
-    text-decoration: none;
-}
-
-.top-nav a.brand:hover {
-    text-decoration: underline;
-}
-
-.nav-links {
-    gap: 10px;
-}
-
-.nav-links a {
-    color: #e0f2fe;
-    text-decoration: none;
-    font-size: 0.9rem;
-    padding: 6px 12px;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.nav-links a:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-
 .profile-card {
     background: #f9fafb;
     border-radius: 12px;
