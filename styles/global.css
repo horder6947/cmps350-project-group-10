@@ -140,6 +140,16 @@ body {
     font-weight: bold;
     color: var(--blue);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* logo icon sits next to the text */
+}
+
+.nav-logo-img {
+    width: 45px;
+    height: 45px;
+    /* keep the bird icon small */
 }
 
 .nav-links {
