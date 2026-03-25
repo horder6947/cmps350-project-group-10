@@ -152,6 +152,10 @@ body {
     color: var(--text-light);
     text-decoration: none;
     font-weight: bold;
+    padding: 5px 15px;
+    /* same padding on all links so active border doesnt shift things */
+    border: 2px solid transparent;
+    border-radius: 50px;
 }
 
 .nav-links a:hover {
@@ -160,9 +164,6 @@ body {
 
 .nav-links a.active {
     color: var(--blue);
-    border: 2px solid var(--blue);
-    border-radius: 50px;
-    /* circle/pill shape */
-    padding: 5px 15px;
-    /* space inside the circle */
+    border-color: var(--blue);
+    /* just change the border color, padding is already set above */
 }
