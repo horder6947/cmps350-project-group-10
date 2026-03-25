@@ -38,9 +38,12 @@ async function initializeUsers() {
     const response = await fetch('./content/users.json');
     const users = await response.json();
 
-    localStorage.setItem('users', JSON.stringify(users));
-    console.log('Initialized users from JSON');
+    if (!localStorage.getItem('users')) {
 
+        localStorage.setItem('users', JSON.stringify(users));
+        console.log('Initialized users from JSON');
+
+    }
 }
 
 async function initializePosts() {
@@ -48,9 +51,11 @@ async function initializePosts() {
     const response = await fetch('./content/posts.json');
     const posts = await response.json();
 
-    localStorage.setItem('posts', JSON.stringify(posts));
-    console.log('Initialized posts from JSON');
+    if (!localStorage.getItem('posts')) {
 
+        localStorage.setItem('posts', JSON.stringify(posts));
+        console.log('Initialized posts from JSON');
+    }
 }
 
 // returns userID if user created and undefined if not created

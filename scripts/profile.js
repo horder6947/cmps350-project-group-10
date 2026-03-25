@@ -7,13 +7,9 @@ import {
     logout
 } from "./library.js";
 
-if (!localStorage.getItem('users')) {
-    await initializeUsers();
-}
+await initializeUsers();
+await initializePosts();
 
-if (!localStorage.getItem('posts')) {
-    await initializePosts();
-}
 
 const params = new URL(window.location.href).searchParams;
 const userIDParam = params.get('userid');
@@ -71,7 +67,7 @@ function loadUserData() {
     }
 
     username.textContent = user.username;
-    userid.textContent = '@' + user.username;
+    userid.textContent = '@' + user.userID;
     email.textContent = user.email;
     bio.textContent = user.bio || 'No bio';
     followersCount.textContent = user.followersCount;
