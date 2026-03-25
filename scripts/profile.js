@@ -3,7 +3,8 @@ import {
     initializePosts,
     getUser,
     changeBio,
-    changeUsername
+    changeUsername,
+    logout
 } from "./library.js";
 
 if (!localStorage.getItem('users')) {
@@ -32,6 +33,9 @@ const editUsernameInput = document.getElementById('editUsername');
 const editBioInput = document.getElementById('editBio');
 const cancelEditBtn = document.getElementById('cancelEditBtn');
 
+const logoutBtn = document.getElementById("logout");
+logoutBtn.addEventListener('click', () => logout());
+
 editModal.hidden = true;
 
 function getCurrentUserID() {
@@ -45,8 +49,8 @@ function getCurrentUserID() {
         return storedUserID;
     }
 
-    localStorage.setItem('currentUserID', "KRo53fKY5l");
-    return "KRo53fKY5l";
+    return;
+
 }
 
 function loadUserData() {

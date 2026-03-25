@@ -10,7 +10,8 @@ import {
     likePost,
     removeLike,
     commentOnPost,
-    deletePost
+    deletePost,
+    logout
 } from "./library.js";
 
 if (!localStorage.getItem('users')) {
@@ -22,6 +23,9 @@ if (!localStorage.getItem('posts')) {
 }
 
 loadFeed();
+
+const logoutBtn = document.getElementById("logout");
+logoutBtn.addEventListener('click', () => logout());
 
 function getCurrentUserID() {
 

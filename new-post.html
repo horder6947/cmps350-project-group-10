@@ -19,7 +19,7 @@
                 <a href="feed.html">Feed</a>
                 <a href="new-post.html" class="active">New post</a>
                 <a href="profile.html">Profile</a>
-                <a href="login.html">Log out</a>
+                <a id="logout" href="login.html">Log out</a>
             </div>
         </div>
     </nav>
@@ -34,13 +34,8 @@
             <form id="new-post-form" class="composer-form">
                 <div class="field-group">
                     <label for="post-content">Post content</label>
-                    <textarea
-                        id="post-content"
-                        class="input-field"
-                        rows="7"
-                        maxlength="500"
-                        placeholder="What do you want to share?"
-                    ></textarea>
+                    <textarea id="post-content" class="input-field" rows="7" maxlength="500"
+                        placeholder="What do you want to share?"></textarea>
                 </div>
 
                 <div class="action-row">

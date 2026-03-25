@@ -47,7 +47,7 @@
             background-color: var(--card-bg);
             border-radius: 10px;
             padding: 24px 22px;
-            box-shadow:0 18px 40px rgba(17, 24, 39, 0.25);
+            box-shadow: 0 18px 40px rgba(17, 24, 39, 0.25);
             border: 1px solid var(--border);
         }
 
@@ -142,4 +142,11 @@
                 text-align: center;
                 margin-bottom: 12px;
             }
+        }
+
+        #error {
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            color: rgb(247, 67, 67);
         }
