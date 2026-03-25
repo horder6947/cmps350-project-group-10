@@ -1,0 +1,131 @@
+.users-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+    .users-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.user-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #38bdf8, #6366f1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.user-info {
+    flex-grow: 1;
+}
+
+.user-username {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin: 0 0 4px;
+}
+
+.user-userid {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.user-bio {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin: 12px 0;
+    line-height: 1.4;
+    min-height: 40px;
+}
+
+.user-stats {
+    display: flex;
+    gap: 16px;
+    margin: 16px 0;
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+.user-stat {
+    flex: 1;
+    text-align: center;
+}
+
+.user-stat-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--blue);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.user-stat-label {
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+.user-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.user-actions .btn {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-follow {
+    background-color: var(--blue);
+    color: white;
+}
+
+.btn-follow:hover {
+    background-color: var(--dark-blue);
+}
+
+.btn-unfollow {
+    background-color: var(--border);
+    color: var(--text-dark);
+}
+
+.btn-unfollow:hover {
+    background-color: var(--text-light);
+    color: white;
+}

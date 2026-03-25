@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Feed</title>
+    <title>Users</title>
     <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/feed.css">
-    <script type="module" src="scripts/feed.js"></script>
-
+    <link rel="stylesheet" href="styles/users.css">
+    <script type="module" src="scripts/users.js"></script>
 </head>
 
 <body>
@@ -17,8 +16,8 @@
             <a class="nav-logo" href="feed.html"><img src="chirp-logo.png" alt="Chirp" class="nav-logo-img">Chirp</a>
             <div class="nav-links">
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-                <a href="users.html">Discover</a>
-                <a href="feed.html" class="active">Feed</a>
+                <a href="users.html" class="active">Discover</a>
+                <a href="feed.html">Feed</a>
                 <a href="new-post.html">New post</a>
                 <a href="profile.html">Profile</a>
                 <a id="logout" href="login.html">Log out</a>
@@ -27,12 +26,11 @@
     </nav>
 
     <main class="container">
-        <h2>Your News Feed</h2>
+        <h2>Discover Users</h2>
         <br>
 
-        <section id="feed-container">
-            <!-- Posts will be injected here via javascript -->
-            <p>Loading posts...</p>
+        <section id="users-container" class="users-grid">
+            <p>Loading users...</p>
         </section>
     </main>
     <script src="scripts/theme-toggle.js"></script>
