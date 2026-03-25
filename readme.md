@@ -15,8 +15,8 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 | :---------------------------- | :------------ | :------------ | :-------------------------------- |
 | User Registration & Login     | [Sharif]      | [started]     | implement js                      |
 | News Feed                     | [yacine]      | [started]     | add option to sort by likes/comments, add toggle to show from following only (requires extra function in library.js) |
-| Create/Delete Posts           | [Tameem]      | [not done]    |                                   |
-| Like/Comment on a Post        | [Tameem]      | [not done]    |                                   |
+| Create/Delete Posts           | [Tameem]      | [done]        |                                   |
+| Like/Comment on a Post        | [Tameem]      | [done]        |                                   |
 | User Profile                  | [Sharif]      | [started]     | display followers and following accounts |
 | Layout & Responsiveness       | [khaled]      | [not done]    |                                   |
 | Design & Consistency          | [yacine]      | [started]     | add dark mode                     |
