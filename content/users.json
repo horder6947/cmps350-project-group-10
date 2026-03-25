@@ -6,14 +6,18 @@
         "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
         "bio": "Sample Bio 1",
         "createdTimestamp": 1773764416271,
-        "followersCount": 1,
-        "followingCount": 2,
+        "followersCount": 3,
+        "followingCount": 4,
         "followers": [
-            "uasT3a59C6"
+            "c7jvAWdXB5",
+            "uasT3a59C6",
+            "1BF_17puw8"
         ],
         "following": [
             "c7jvAWdXB5",
-            "uasT3a59C6"
+            "uasT3a59C6",
+            "D1CKLmcKvZ",
+            "EFOEeUnRMH"
         ],
         "postsCount": 2,
         "posts": [
@@ -28,12 +32,18 @@
         "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
         "bio": "Sample Bio 2",
         "createdTimestamp": 1773764416271,
-        "followersCount": 1,
-        "followingCount": 0,
+        "followersCount": 2,
+        "followingCount": 4,
         "followers": [
-            "KRo53fKY5l"
+            "KRo53fKY5l",
+            "XZnZ5vEeWZ"
         ],
-        "following": [],
+        "following": [
+            "KRo53fKY5l",
+            "uasT3a59C6",
+            "D1CKLmcKvZ",
+            "ILgNFhEHVu"
+        ],
         "postsCount": 1,
         "posts": [
             "41WSRiVx-INLyzD2gehm"
@@ -46,13 +56,17 @@
         "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
         "bio": "",
         "createdTimestamp": 1773764416271,
-        "followersCount": 1,
-        "followingCount": 1,
+        "followersCount": 2,
+        "followingCount": 4,
         "followers": [
-            "KRo53fKY5l"
+            "KRo53fKY5l",
+            "c7jvAWdXB5"
         ],
         "following": [
-            "KRo53fKY5l"
+            "KRo53fKY5l",
+            "c7jvAWdXB5",
+            "cMhaihPKyh",
+            "x24-NgaevS"
         ],
         "postsCount": 0,
         "posts": []
@@ -64,10 +78,19 @@
         "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
         "bio": "",
         "createdTimestamp": 1773764416271,
-        "followersCount": 0,
-        "followingCount": 0,
-        "followers": [],
-        "following": [],
+        "followersCount": 3,
+        "followingCount": 4,
+        "followers": [
+            "KRo53fKY5l",
+            "c7jvAWdXB5",
+            "JMKWlNGdM1"
+        ],
+        "following": [
+            "KRo53fKY5l",
+            "uasT3a59C6",
+            "ILgNFhEHVu",
+            "TlvAi6cRrn"
+        ],
         "postsCount": 1,
         "posts": [
             "vVOE-vS2jX70hCleDG5s"
@@ -75,16 +98,257 @@
     },
     {
         "userID": "ILgNFhEHVu",
-        "username": "user4",
+        "username": "user5",
         "email": "user5@example.com",
         "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
         "bio": "",
         "createdTimestamp": 1774360696721,
-        "followersCount": 0,
-        "followingCount": 0,
-        "followers": [],
-        "following": [],
+        "followersCount": 2,
+        "followingCount": 4,
+        "followers": [
+            "c7jvAWdXB5",
+            "D1CKLmcKvZ"
+        ],
+        "following": [
+            "KRo53fKY5l",
+            "c7jvAWdXB5",
+            "JFZvTwvNAI",
+            "ARjfxfrDeP"
+        ],
         "postsCount": 0,
         "posts": []
+    },
+    {
+        "userID": "1BF_17puw8",
+        "username": "user6",
+        "email": "user6@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Tech enthusiast and coffee lover",
+        "createdTimestamp": 1704067200000,
+        "followersCount": 1,
+        "followingCount": 4,
+        "followers": [
+            "JSmgOd7Ck7"
+        ],
+        "following": [
+            "KRo53fKY5l",
+            "c7jvAWdXB5",
+            "XZnZ5vEeWZ",
+            "cMhaihPKyh"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "9OmfYW6bwBg2FQLm9Ybs"
+        ]
+    },
+    {
+        "userID": "EFOEeUnRMH",
+        "username": "user7",
+        "email": "user7@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Always learning something new",
+        "createdTimestamp": 1708905600000,
+        "followersCount": 1,
+        "followingCount": 4,
+        "followers": [
+            "KRo53fKY5l"
+        ],
+        "following": [
+            "uasT3a59C6",
+            "D1CKLmcKvZ",
+            "x24-NgaevS",
+            "JMKWlNGdM1"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "6R2bUrSTQeufXbDAuTAY"
+        ]
+    },
+    {
+        "userID": "XZnZ5vEeWZ",
+        "username": "user8",
+        "email": "user8@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Photography and travel",
+        "createdTimestamp": 1713744000000,
+        "followersCount": 2,
+        "followingCount": 4,
+        "followers": [
+            "c7jvAWdXB5",
+            "1BF_17puw8"
+        ],
+        "following": [
+            "KRo53fKY5l",
+            "ILgNFhEHVu",
+            "TlvAi6cRrn",
+            "JFZvTwvNAI"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "oVb7SrvyYVa2wFIRclk0"
+        ]
+    },
+    {
+        "userID": "cMhaihPKyh",
+        "username": "user9",
+        "email": "user9@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Music is life",
+        "createdTimestamp": 1718582400000,
+        "followersCount": 1,
+        "followingCount": 4,
+        "followers": [
+            "uasT3a59C6"
+        ],
+        "following": [
+            "KRo53fKY5l",
+            "c7jvAWdXB5",
+            "uasT3a59C6",
+            "1BF_17puw8"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "623T_Lo86TkHVJqQ2JZx"
+        ]
+    },
+    {
+        "userID": "x24-NgaevS",
+        "username": "user10",
+        "email": "user10@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Fitness and wellness advocate",
+        "createdTimestamp": 1723420800000,
+        "followersCount": 1,
+        "followingCount": 4,
+        "followers": [
+            "uasT3a59C6"
+        ],
+        "following": [
+            "c7jvAWdXB5",
+            "D1CKLmcKvZ",
+            "ILgNFhEHVu",
+            "JMKWlNGdM1"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "8mlE-4aNhD-9qQ_OGhNF"
+        ]
+    },
+    {
+        "userID": "JMKWlNGdM1",
+        "username": "user11",
+        "email": "user11@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Love reading and writing",
+        "createdTimestamp": 1728259200000,
+        "followersCount": 2,
+        "followingCount": 4,
+        "followers": [
+            "EFOEeUnRMH",
+            "D1CKLmcKvZ"
+        ],
+        "following": [
+            "KRo53fKY5l",
+            "uasT3a59C6",
+            "x24-NgaevS",
+            "TlvAi6cRrn"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "ioweffTXguxXEOEkiasm"
+        ]
+    },
+    {
+        "userID": "TlvAi6cRrn",
+        "username": "user12",
+        "email": "user12@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Gaming and streaming",
+        "createdTimestamp": 1733097600000,
+        "followersCount": 2,
+        "followingCount": 4,
+        "followers": [
+            "D1CKLmcKvZ",
+            "XZnZ5vEeWZ"
+        ],
+        "following": [
+            "KRo53fKY5l",
+            "c7jvAWdXB5",
+            "ILgNFhEHVu",
+            "JFZvTwvNAI"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "ULzBUET8osmR5pa_iGsg"
+        ]
+    },
+    {
+        "userID": "JFZvTwvNAI",
+        "username": "user13",
+        "email": "user13@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Cooking and food lover",
+        "createdTimestamp": 1737936000000,
+        "followersCount": 2,
+        "followingCount": 4,
+        "followers": [
+            "XZnZ5vEeWZ",
+            "ILgNFhEHVu"
+        ],
+        "following": [
+            "KRo53fKY5l",
+            "c7jvAWdXB5",
+            "TlvAi6cRrn",
+            "ARjfxfrDeP"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "zVoD2ag68pCTLpPtcvX0"
+        ]
+    },
+    {
+        "userID": "JSmgOd7Ck7",
+        "username": "user14",
+        "email": "user14@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Nature and hiking",
+        "createdTimestamp": 1739750400000,
+        "followersCount": 0,
+        "followingCount": 4,
+        "followers": [],
+        "following": [
+            "KRo53fKY5l",
+            "uasT3a59C6",
+            "1BF_17puw8",
+            "x24-NgaevS"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "F1ZHgMAKNf5w_el3pN6U"
+        ]
+    },
+    {
+        "userID": "ARjfxfrDeP",
+        "username": "user15",
+        "email": "user15@example.com",
+        "passwordSHA256": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+        "bio": "Art and design",
+        "createdTimestamp": 1740009600000,
+        "followersCount": 2,
+        "followingCount": 4,
+        "followers": [
+            "ILgNFhEHVu",
+            "JFZvTwvNAI"
+        ],
+        "following": [
+            "c7jvAWdXB5",
+            "D1CKLmcKvZ",
+            "x24-NgaevS",
+            "JSmgOd7Ck7"
+        ],
+        "postsCount": 1,
+        "posts": [
+            "3t9tWhu-dWsB9g_8J6Dg"
+        ]
     }
 ]
