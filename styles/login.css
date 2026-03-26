@@ -131,6 +131,16 @@ button:hover {
     text-decoration: underline;
 }
 
+html:not([data-theme="dark"]) .signin-title,
+html:not([data-theme="dark"]) .signup-hint {
+    color: var(--blue);
+}
+
+[data-theme="dark"] .signin-title,
+[data-theme="dark"] .signup-hint {
+    color: var(--text-dark);
+}
+
 @media (max-width: 700px) {
     .page {
         grid-template-columns: 1fr;
