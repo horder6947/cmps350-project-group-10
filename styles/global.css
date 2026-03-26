@@ -123,6 +123,7 @@ body {
     border-bottom: 1px solid var(--border);
     padding: var(--space-m) 0;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .nav-container {
@@ -176,4 +177,23 @@ body {
     color: var(--blue);
     border-color: var(--blue);
     /* just change the border color, padding is already set above */
+}
+
+/* media query for smaller screens so the nav adjusts properly */
+@media (max-width: 700px) {
+    .nav-container {
+        flex-direction: column;
+        padding: 0 15px;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        padding: 5px 10px;
+    }
 }
