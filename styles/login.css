@@ -1,152 +1,144 @@
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #0ea5e9, #6366f1);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0ea5e9, #6366f1);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+/* darker gradient for dark mode */
+[data-theme="dark"] body {
+    background: linear-gradient(135deg, #0c4a6e, #312e81);
+}
 
-        /* darker gradient for dark mode */
-        [data-theme="dark"] body {
-            background: linear-gradient(135deg, #0c4a6e, #312e81);
-        }
+.page {
+    width: 100%;
+    max-width: 860px;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    color: #f9fafb;
+}
 
-        .page {
-            width: 100%;
-            max-width: 860px;
-            padding: 24px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            color: #f9fafb;
-        }
+.left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 10px;
+}
 
-        .left-side {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-right: 10px;
-        }
+.left-side h1 {
+    margin: 0 0 10px;
+    font-size: 26px;
+    color: #f9fafb;
+}
 
-        .left-side h1 {
-            margin: 0 0 10px;
-            font-size: 26px;
-            color: #f9fafb;
-        }
+.left-side p {
+    margin: 0;
+    color: #e5e7eb;
+    font-size: 14px;
+}
 
-        .left-side p {
-            margin: 0;
-            color: #e5e7eb;
-            font-size: 14px;
-        }
+.box {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 24px 22px;
+    box-shadow: 0 18px 40px rgba(17, 24, 39, 0.25);
+    border: 1px solid var(--border);
+}
 
-        .box {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 24px 22px;
-            box-shadow: 0 18px 40px rgba(17, 24, 39, 0.25);
-            border: 1px solid var(--border);
-        }
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 900px;
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
 
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 900px;
-            background-color: #dbeafe;
-            color: #1d4ed8;
-            font-size: 11px;
-            margin-bottom: 10px;
-        }
+[data-theme="dark"] .badge {
+    background-color: #1e3a5f;
+    color: #93c5fd;
+}
 
-        [data-theme="dark"] .badge {
-            background-color: #1e3a5f;
-            color: #93c5fd;
-        }
+.box h2 {
+    margin: 0 0 16px;
+    font-size: 20px;
+    text-align: center;
+    color: var(--text-dark);
+}
 
-        .box h2 {
-            margin: 0 0 16px;
-            font-size: 20px;
-            text-align: center;
-            color: var(--text-dark);
-        }
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
 
-        form {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
+label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: var(--text-light);
+}
 
-        label {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 4px;
-            color: var(--text-light);
-        }
+input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    background-color: var(--input-bg);
+    color: var(--text-dark);
+}
 
-        input {
-            width: 100%;
-            padding: 8px 10px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            font-size: 14px;
-            background-color: var(--input-bg);
-            color: var(--text-dark);
-        }
+input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
 
-        input:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
+button {
+    margin-top: 6px;
+    width: 100%;
+    padding: 9px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+}
 
-        button {
-            margin-top: 6px;
-            width: 100%;
-            padding: 9px;
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 14px;
-        }
+button:hover {
+    background-color: #1d4ed8;
+}
 
-        button:hover {
-            background-color: #1d4ed8;
-        }
+.box p {
+    margin-top: 14px;
+    font-size: 13px;
+    text-align: center;
+    color: var(--text-light);
+}
 
-        .box p {
-            margin-top: 14px;
-            font-size: 13px;
-            text-align: center;
-            color: var(--text-light);
-        }
+.box a {
+    color: #2563eb;
+    text-decoration: none;
+}
 
-        .box a {
-            color: #2563eb;
-            text-decoration: none;
-        }
+.box a:hover {
+    text-decoration: underline;
+}
 
-        .box a:hover {
-            text-decoration: underline;
-        }
+@media (max-width: 700px) {
+    .page {
+        grid-template-columns: 1fr;
+    }
 
-        @media (max-width: 700px) {
-            .page {
-                grid-template-columns: 1fr;
-            }
-
-            .left-side {
-                padding-right: 0;
-                text-align: center;
-                margin-bottom: 12px;
-            }
-        }
-
-        #error {
-            text-align: center;
-            font-weight: bold;
-            display: none;
-            color: rgb(247, 67, 67);
-        }
+    .left-side {
+        padding-right: 0;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+}

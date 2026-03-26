@@ -197,3 +197,10 @@ body {
         padding: 5px 10px;
     }
 }
+
+#error {
+    text-align: center;
+    font-weight: bold;
+    display: none;
+    color: rgb(247, 67, 67);
+}

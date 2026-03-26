@@ -47,9 +47,11 @@ body {
     font-size: 11px;
     margin-bottom: 10px;
 }
-.card{
+
+.card {
     flex-grow: 1;
 }
+
 .card h2 {
     margin: 0 0 16px;
     font-size: 20px;
@@ -101,7 +103,6 @@ input {
 @media (max-width: 600px) {
     .page {
         flex-direction: column;
-        text-align: center;
     }
 
     .left-side {
@@ -109,4 +110,3 @@ input {
         margin-bottom: 12px;
     }
 }
-
