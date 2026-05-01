@@ -31,6 +31,6 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 | Seed Database                 | [khaled]      | []            |                                       |
 | API and Repository            | [khaled]      | []            |                                       |
 | Statistics                    | [all]         | []            |                                       |
-| Frontend conversion           | [sharif]      | []            | Fron html to jsx                      |
+| Frontend conversion           | [sharif]      | []            | from html to jsx                      |
 | Documentation                 | [tameem]      | []            |                                       |
 | Host Website and DB (bonus)   | [yacine]      | []            |                                       |
