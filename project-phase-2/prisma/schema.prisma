@@ -8,17 +8,13 @@ datasource db {
 }
 
 model User {
-  id              String @id @default(cuid(2))
-  username        String
-  email           String @unique
-  password_digest String
+  id       String @id @default(cuid(2))
+  username String
+  email    String @unique
+  password String // plaintext password for easier testing and demo
 
   bio          String   @default("No bio")
   date_created DateTime @default(now())
-
-  followers_count Int @default(0)
-  following_count Int @default(0)
-  posts_count     Int @default(0)
 
   following Follows[] @relation("Following")
   followers Follows[] @relation("Followers")
@@ -31,8 +27,8 @@ model Follows {
   follower_id String // FK
   followee_id String // FK
 
-  followee User @relation("Followers", references: [id], fields: [followee_id])
-  follower User @relation("Following", references: [id], fields: [follower_id])
+  followee User @relation("Followers", references: [id], fields: [followee_id], onDelete: Cascade)
+  follower User @relation("Following", references: [id], fields: [follower_id], onDelete: Cascade)
 
   @@id([followee_id, follower_id])
 }
@@ -41,12 +37,10 @@ model Post {
   id String @id @default(cuid(2))
 
   author_id String // FK
-  author    User   @relation(fields: [author_id], references: [id])
+  author    User   @relation(fields: [author_id], references: [id], onDelete: Cascade)
 
-  post_content   String
-  date_created   DateTime @default(now())
-  likes_count    Int      @default(0)
-  comments_count Int      @default(0)
+  post_content String
+  date_created DateTime @default(now())
 
   likes    Like[]
   comments Comment[]
@@ -56,8 +50,8 @@ model Like {
   post_id  String // FK
   liker_id String // FK
 
-  post  Post @relation(references: [id], fields: [post_id])
-  liker User @relation(references: [id], fields: [liker_id])
+  post  Post @relation(references: [id], fields: [post_id], onDelete: Cascade)
+  liker User @relation(references: [id], fields: [liker_id], onDelete: Cascade)
 
   @@id([post_id, liker_id])
 }
@@ -69,6 +63,6 @@ model Comment {
   date_created DateTime @default(now())
   comment      String
 
-  author User @relation(references: [id], fields: [author_id])
-  post   Post @relation(references: [id], fields: [post_id])
+  author User @relation(references: [id], fields: [author_id], onDelete: Cascade)
+  post   Post @relation(references: [id], fields: [post_id], onDelete: Cascade)
 }
