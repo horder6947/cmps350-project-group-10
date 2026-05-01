@@ -27,7 +27,7 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
  
 | Task                          | Assigned to   | Done?         | Comments                              |
 | :---------------------------- | :------------ | :------------ | :------------------------------------ |
-| Design Database               | [khaled]      | []            |                                       |
+| Design Database               | [yacine]      | []            |                                       |
 | Seed Database                 | [khaled]      | []            |                                       |
 | API and Repository            | [khaled]      | []            |                                       |
 | Statistics                    | [all]         | []            |                                       |
