@@ -9,16 +9,28 @@ Tameem Ansari - ta2208882@student.qu.edu.qa
 Sharif Hamad - sh2209291@student.qu.edu.qa
 
  
-## 2. Feature Checklist
+## 2. Feature Checklist - Phase 1
  
-| Task                          | Assigned to   | Done?         | Comments                          |
-| :---------------------------- | :------------ | :------------ | :-------------------------------- |
-| User Registration & Login     | [Sharif]      | [done]        | implement js for registration page|
-| News Feed                     | [yacine]      | [done]        |                                   |
-| Create/Delete Posts           | [Tameem]      | [done]        |                                   |
-| Like/Comment on a Post        | [Tameem]      | [done]        |                                   |
-| User Profile                  | [Sharif]      | [done]        | add option for profile picture?   |
-| Layout & Responsiveness       | [all]         | [done]        |                                   |
-| Design & Consistency          | [yacine]      | [done]        |                                   |
-| Data Handling                 | [khaled]      | [done]        |                                   |
-| Javascript Backend/Scripts    | [khaled]      | [done].       | implement js for registration page|
+| Task                          | Assigned to   | Done?         | Comments                              |
+| :---------------------------- | :------------ | :------------ | :------------------------------------ |
+| User Registration & Login     | [Sharif]      | [done]        | implement js for registration page    |
+| News Feed                     | [yacine]      | [done]        |                                       |
+| Create/Delete Posts           | [Tameem]      | [done]        |                                       |
+| Like/Comment on a Post        | [Tameem]      | [done]        |                                       |
+| User Profile                  | [Sharif]      | [done]        | add option for profile picture?       |
+| Layout & Responsiveness       | [all]         | [done]        |                                       |
+| Design & Consistency          | [yacine]      | [done]        |                                       |
+| Data Handling                 | [khaled]      | [done]        |                                       |
+| Javascript Backend/Scripts    | [khaled]      | [done]        | implement js for registration page    |
+
+## 3. Feature Checklist - Phase 2
+ 
+| Task                          | Assigned to   | Done?         | Comments                              |
+| :---------------------------- | :------------ | :------------ | :------------------------------------ |
+| Design Database               | [khaled]      | []            |                                       |
+| Seed Database                 | [khaled]      | []            |                                       |
+| API and Repository            | [khaled]      | []            |                                       |
+| Statistics                    | [all]         | []            |                                       |
+| Frontend conversion           | [sharif]      | []            | Fron html to jsx                      |
+| Documentation                 | [tameem]      | []            |                                       |
+| Host Website and DB (bonus)   | [yacine]      | []            |                                       |
