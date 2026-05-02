@@ -4,8 +4,16 @@ function round2(n) {
   return Number(Number(n).toFixed(2));
 }
 
-export async function GET() {
+function parseTopN(request) {
+  const { searchParams } = new URL(request.url);
+  let n = Number(searchParams.get("topN") ?? "5");
+  if (!Number.isFinite(n)) n = 5;
+  return Math.min(Math.max(Math.floor(n), 1), 20);
+}
+
+export async function GET(request) {
   try {
+    const topN = parseTopN(request);
     const [
       followerSummary,
       avgPostsRaw,
@@ -18,7 +26,7 @@ export async function GET() {
       stats.getAveragePostsPerUser(),
       stats.getAverageLikesPerPost(),
       stats.getAverageCommentsPerPost(),
-      stats.getMostLikedPosts(5),
+      stats.getMostLikedPosts(topN),
       stats.getNewUsers(),
     ]);
 
@@ -28,6 +36,7 @@ export async function GET() {
       averageLikesPerPost: round2(avgLikesRaw),
       averageCommentsPerPost: round2(avgCommentsRaw),
       topPosts: topPosts ?? [],
+      topPostsCount: topN,
       newUsersThisMonth: Array.isArray(newUsers) ? newUsers.length : 0,
     });
   } catch (err) {

@@ -52,7 +52,9 @@ function StatisticsDashboard({ data }) {
       </section>
 
       <section className="card statistics-card">
-        <h3 className="statistics-card-title">Top liked posts</h3>
+        <h3 className="statistics-card-title">
+          Top {data?.topPostsCount ?? 5} most liked posts
+        </h3>
         {topPosts.length === 0 ? (
           <p className="statistics-empty">No posts yet.</p>
         ) : (
@@ -81,6 +83,7 @@ function StatisticsDashboard({ data }) {
 }
 
 export default function StatisticsPage() {
+  const [topN, setTopN] = useState(5);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -90,7 +93,7 @@ export default function StatisticsPage() {
 
     async function loadStats() {
       try {
-        const res = await fetch("/api/statistics");
+        const res = await fetch(`/api/statistics?topN=${topN}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         if (mounted) setData(json);
@@ -101,11 +104,13 @@ export default function StatisticsPage() {
       }
     }
 
+    setIsLoading(true);
+    setError(null);
     loadStats();
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [topN]);
 
   if (isLoading) {
     return (
@@ -138,6 +143,22 @@ export default function StatisticsPage() {
         <h2>Statistics</h2>
         <p className="statistics-lead">
           Overview of activity across the platform.
+        </p>
+
+        <p className="statistics-topn-row">
+          <label htmlFor="stats-top-n">
+            Top liked posts (how many):{" "}
+            <select
+              id="stats-top-n"
+              className="statistics-topn-select"
+              value={topN}
+              onChange={(e) => setTopN(Number(e.target.value))}
+            >
+              <option value={3}>3</option>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+            </select>
+          </label>
         </p>
 
         <StatisticsDashboard data={data} />

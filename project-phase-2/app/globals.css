@@ -159,6 +159,23 @@ body {
   border-color: var(--blue);
 }
 
+.nav-logout {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 15px;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.nav-logout:hover {
+  color: var(--blue);
+}
+
 .auth-page {
   width: 100%;
   max-width: 860px;

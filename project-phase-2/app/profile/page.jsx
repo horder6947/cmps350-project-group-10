@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import TopNav from "@/app/components/TopNav";
+import { readSession, writeSession } from "@/lib/session";
 
 const initialProfile = {
   username: "",
@@ -19,25 +20,91 @@ export default function Page() {
   const [showModal, setShowModal] = useState(false);
   const [editUsername, setEditUsername] = useState(initialProfile.username);
   const [editBio, setEditBio] = useState(initialProfile.bio);
+  const [error, setError] = useState("");
 
-  function saveProfile(event) {
-    event.preventDefault();
-    if (!editUsername.trim()) {
+  useEffect(() => {
+    const session = readSession();
+    if (!session?.id) {
+      setError("Please log in first.");
       return;
     }
 
-    setProfile((old) => ({
-      ...old,
-      username: editUsername.trim(),
-      bio: editBio.trim(),
-    }));
-    setShowModal(false);
+    let cancelled = false;
+    async function load() {
+      try {
+        const res = await fetch(`/api/users/${encodeURIComponent(session.id)}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (cancelled) return;
+        setProfile({
+          username: data.username ?? "",
+          userID: data.id ?? "",
+          email: data.email ?? "",
+          bio: data.bio ?? "",
+          followersCount: data.followersCount ?? 0,
+          followingCount: data.followingCount ?? 0,
+          postsCount: data.postsCount ?? 0,
+        });
+        setEditUsername(data.username ?? "");
+        setEditBio(data.bio ?? "");
+      } catch (err) {
+        if (!cancelled) setError(err?.message || "Unable to load profile");
+      }
+    }
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  async function saveProfile(event) {
+    event.preventDefault();
+    if (!editUsername.trim()) return;
+    const session = readSession();
+    if (!session?.id) {
+      setError("Please log in first.");
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/users/${encodeURIComponent(session.id)}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: editUsername.trim(),
+          bio: editBio.trim(),
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      setProfile({
+        username: data.username ?? "",
+        userID: data.id ?? "",
+        email: data.email ?? "",
+        bio: data.bio ?? "",
+        followersCount: data.followersCount ?? 0,
+        followingCount: data.followingCount ?? 0,
+        postsCount: data.postsCount ?? 0,
+      });
+      writeSession({
+        id: data.id,
+        username: data.username,
+        email: data.email,
+        bio: data.bio,
+      });
+      setShowModal(false);
+      setError("");
+    } catch (err) {
+      setError(err?.message || "Unable to save profile");
+    }
   }
 
   return (
     <div className="profile-page">
       <TopNav activePath="/profile" />
       <main className="container app">
+        {error ? <p className="error-visible">{error}</p> : null}
         <section className="card profile-card">
           <div className="cover" />
           <div className="profile-body">

@@ -2,22 +2,26 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { clearSession, readSession } from "@/lib/session";
 
 const navItems = [
   { href: "/users", label: "Discover" },
   { href: "/feed", label: "Feed" },
   { href: "/statistics", label: "Statistics" },
+  { href: "/my-posts", label: "My posts" },
   { href: "/new-post", label: "New post" },
   { href: "/profile", label: "Profile" },
 ];
 
 export default function TopNav({ activePath }) {
   const [theme, setTheme] = useState("light");
+  const [session, setSession] = useState(null);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
+    setSession(readSession());
   }, []);
 
   function toggleTheme() {
@@ -25,6 +29,12 @@ export default function TopNav({ activePath }) {
     setTheme(next);
     document.documentElement.setAttribute("data-theme", next);
     window.localStorage.setItem("theme", next);
+  }
+
+  function logout() {
+    clearSession();
+    setSession(null);
+    window.location.href = "/login";
   }
 
   return (
@@ -53,7 +63,13 @@ export default function TopNav({ activePath }) {
               {item.label}
             </Link>
           ))}
-          <Link href="/login">Log out</Link>
+          {session ? (
+            <button type="button" className="nav-logout" onClick={logout}>
+              Log out
+            </button>
+          ) : (
+            <Link href="/login">Log in</Link>
+          )}
         </div>
       </div>
     </nav>
