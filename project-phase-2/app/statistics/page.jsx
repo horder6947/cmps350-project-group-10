@@ -4,22 +4,93 @@ import { useEffect, useState } from "react";
 import TopNav from "@/app/components/TopNav";
 import "./statistics.css";
 
-const TOP_OPTIONS = [3, 5, 10];
+function truncate(text, max = 120) {
+  if (!text) return "";
+  const t = text.trim();
+  return t.length <= max ? t : `${t.slice(0, max)}…`;
+}
+
+function StatisticsDashboard({ data }) {
+  const topPosts = data?.topPosts ?? [];
+
+  return (
+    <>
+      <section className="card statistics-card">
+        <h3 className="statistics-card-title">Key metrics</h3>
+        <div className="stats statistics-stats-row">
+          <div className="stat">
+            <p>{data?.averageFollowersPerUser ?? "0"}</p>
+            <span>Avg. followers / user</span>
+          </div>
+          <div className="stat">
+            <p>{data?.averagePostsPerUser ?? "0"}</p>
+            <span>Avg. posts / user</span>
+          </div>
+          <div className="stat">
+            <p>{data?.averageLikesPerPost ?? "0"}</p>
+            <span>Avg. likes / post</span>
+          </div>
+          <div className="stat">
+            <p>{data?.averageCommentsPerPost ?? "0"}</p>
+            <span>Avg. comments / post</span>
+          </div>
+        </div>
+        <div className="stats statistics-stats-row statistics-stats-secondary">
+          <div className="stat">
+            <p>{data?.totalFollowers ?? 0}</p>
+            <span>Total follow relationships</span>
+          </div>
+          <div className="stat">
+            <p>{data?.totalUsers ?? 0}</p>
+            <span>Registered users</span>
+          </div>
+          <div className="stat">
+            <p>{data?.newUsersThisMonth ?? 0}</p>
+            <span>New users (30 days)</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="card statistics-card">
+        <h3 className="statistics-card-title">Top liked posts</h3>
+        {topPosts.length === 0 ? (
+          <p className="statistics-empty">No posts yet.</p>
+        ) : (
+          <ul className="statistics-top-posts">
+            {topPosts.map((post) => (
+              <li key={post.id}>
+                <div className="statistics-post-meta">
+                  <strong className="statistics-author">
+                    @{post.author?.username ?? "unknown"}
+                  </strong>
+                  <span>
+                    {post.likesCount ?? 0} likes · {post.commentsCount ?? 0}{" "}
+                    comments
+                  </span>
+                </div>
+                <p className="statistics-post-snippet">
+                  {truncate(post.post_content)}
+                </p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    </>
+  );
+}
 
 export default function StatisticsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [topN, setTopN] = useState(5);
 
   useEffect(() => {
     let mounted = true;
 
     async function loadStats() {
-      setIsLoading(true);
-      setError(null);
       try {
-        const res = await fetch(`/api/statistics?top=${topN}`);
+        const res = await fetch("/api/statistics");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         if (mounted) setData(json);
@@ -34,114 +105,42 @@ export default function StatisticsPage() {
     return () => {
       mounted = false;
     };
-  }, [topN]);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <>
+        <TopNav activePath="/statistics" />
+        <main className="container">
+          <p className="statistics-status">Loading statistics…</p>
+        </main>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <TopNav activePath="/statistics" />
+        <main className="container">
+          <p className="statistics-status statistics-error">
+            Unable to load statistics: {error}
+          </p>
+        </main>
+      </>
+    );
+  }
 
   return (
     <>
       <TopNav activePath="/statistics" />
-      <main className="container statistics-page">
-        {isLoading && (
-          <>
-            <h2>Platform statistics</h2>
-            <br />
-            <p className="statistics-status">Loading statistics…</p>
-          </>
-        )}
-        {error && (
-          <>
-            <h2>Platform statistics</h2>
-            <br />
-            <p className="statistics-status">Unable to load statistics: {error}</p>
-          </>
-        )}
-        {!isLoading && !error && !data && (
-          <>
-            <h2>Platform statistics</h2>
-            <br />
-            <p className="statistics-status">No data.</p>
-          </>
-        )}
-        {!isLoading && !error && data && (
-          <>
-            <h2>Platform statistics</h2>
-            <br />
+      <main className="container">
+        <h2>Statistics</h2>
+        <p className="statistics-lead">
+          Overview of activity across the platform.
+        </p>
 
-            <div className="statistics-grid">
-              <section className="card statistics-card">
-                <h3 className="statistics-card-title">Average followers per user</h3>
-                <p className="statistics-value">{data.averageFollowersPerUser}</p>
-                <p className="statistics-meta">
-                  Total followers: {data.totalFollowers} · Users: {data.totalUsers}
-                </p>
-              </section>
-
-              <section className="card statistics-card">
-                <h3 className="statistics-card-title">
-                  Avg. followers (total follows ÷ users)
-                </h3>
-                <p className="statistics-value">{data.averageFollowersPerUserTotals}</p>
-              </section>
-
-              <section className="card statistics-card">
-                <h3 className="statistics-card-title">Average posts per user</h3>
-                <p className="statistics-value">{data.averagePostsPerUser}</p>
-              </section>
-
-              <section className="card statistics-card">
-                <h3 className="statistics-card-title">Average likes per post</h3>
-                <p className="statistics-value">{data.averageLikesPerPost}</p>
-              </section>
-
-              <section className="card statistics-card">
-                <h3 className="statistics-card-title">Average comments per post</h3>
-                <p className="statistics-value">{data.averageCommentsPerPost}</p>
-              </section>
-
-              <section className="card statistics-card">
-                <h3 className="statistics-card-title">New users (last 30 days)</h3>
-                <p className="statistics-value">{data.newUsersCount}</p>
-              </section>
-            </div>
-
-            <section className="card statistics-wide">
-              <div className="statistics-toolbar">
-                <h3 className="statistics-section-heading">Most liked posts</h3>
-                <label className="statistics-top-label" htmlFor="top-n">
-                  Top{" "}
-                  <select
-                    id="top-n"
-                    className="statistics-select"
-                    value={topN}
-                    onChange={(e) => setTopN(Number(e.target.value))}
-                  >
-                    {TOP_OPTIONS.map((n) => (
-                      <option key={n} value={n}>
-                        {n}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-              <ol className="statistics-post-list">
-                {(data.topLikedPosts ?? []).length === 0 ? (
-                  <li className="statistics-post-empty">No posts yet.</li>
-                ) : (
-                  data.topLikedPosts.map((post, i) => (
-                    <li key={post.id} className="statistics-post-item">
-                      <span className="statistics-post-rank">{i + 1}.</span>
-                      <div>
-                        <p className="statistics-post-body">{post.post_content}</p>
-                        <p className="statistics-meta">
-                          @{post.author?.username} · {post.likesCount} likes
-                        </p>
-                      </div>
-                    </li>
-                  ))
-                )}
-              </ol>
-            </section>
-          </>
-        )}
+        <StatisticsDashboard data={data} />
       </main>
     </>
   );
