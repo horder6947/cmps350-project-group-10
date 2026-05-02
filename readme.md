@@ -33,4 +33,4 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 | Statistics                    | [khaled]      | [done]    |                                       |
 | Frontend conversion           | [sharif]      | []        | from html to jsx                      |
 | Documentation                 | [tameem]      | []        |                                       |
-| Host Website and DB (bonus)   | [yacine]      | []        |                                       |
+| Host Website and DB (bonus)   | [yacine]      | [done]    | https://cmps350-project-group-10.vercel.app |
