@@ -19,7 +19,7 @@ export async function getAverageFollowersPerUser() {
 
     const followerCounts = await Promise.all(
       userList.map(async (user) => {
-        const result = await getFollowersCount(user.id);
+        const result = await follow.getFollowersCount(user.id);
 
         return typeof result === "number" ? result : result?._count || 0;
       })
@@ -47,7 +47,7 @@ export async function getAverageFollowersPerUser() {
 // 5. ⁠top 5 most liked posts
 // 6. ⁠new users this month
 
-export async function getAverageFollowersPerUser() {
+export async function getAverageFollowersPerUserTotals() {
   const followCount = await follow.getTotalFollowerCount();
   const usersCount = await user.getUserCount();
   if (usersCount !== 0)
