@@ -8,7 +8,6 @@ const navItems = [
   { href: "/feed", label: "Feed" },
   { href: "/new-post", label: "New post" },
   { href: "/profile", label: "Profile" },
-  { href: "/statistics", label: "Statistics" },
 ];
 
 export default function TopNav({ activePath }) {
