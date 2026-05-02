@@ -1,36 +1,45 @@
 import * as followRepo from "@/repos/follow";
-import * as postRepo from "@/repos/post";
-import * as userRepo from "@/repos/user";
+import prisma from "@/repos/prisma";
 
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const viewerId = searchParams.get("viewerId")?.trim() || "";
 
-    const users = await userRepo.getAllUsers();
-    const followingSet = new Set();
-
-    if (viewerId) {
-      const following = (await followRepo.getFollowing(viewerId)) ?? [];
-      for (const row of following) followingSet.add(row.followee_id);
-    }
-
-    const enriched = await Promise.all(
-      users.map(async (u) => {
-        const [followersCount, followingCount, postsCount] = await Promise.all([
-          followRepo.getFollowersCount(u.id),
-          followRepo.getFollowingCount(u.id),
-          postRepo.getUserPostsCount(u.id),
-        ]);
-        return {
-          ...u,
-          followersCount: followersCount ?? 0,
-          followingCount: followingCount ?? 0,
-          postsCount: postsCount ?? 0,
-          isFollowing: followingSet.has(u.id),
-        };
+    const [users, followingRows] = await Promise.all([
+      prisma.user.findMany({
+        select: {
+          id: true,
+          username: true,
+          bio: true,
+          date_created: true,
+          _count: {
+            select: {
+              followers: true,
+              following: true,
+              posts: true,
+            },
+          },
+        },
+        orderBy: { date_created: "desc" },
       }),
+      viewerId ? followRepo.getFollowing(viewerId) : Promise.resolve([]),
+    ]);
+
+    const followingSet = new Set(
+      (followingRows ?? []).map((r) => r.followee_id),
     );
+
+    const enriched = users.map((u) => ({
+      id: u.id,
+      username: u.username,
+      bio: u.bio,
+      date_created: u.date_created,
+      followersCount: u._count.followers,
+      followingCount: u._count.following,
+      postsCount: u._count.posts,
+      isFollowing: followingSet.has(u.id),
+    }));
 
     return Response.json({ users: enriched });
   } catch (error) {
