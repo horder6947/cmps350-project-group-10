@@ -1,0 +1,60 @@
+/* Small, hand-tuned CSS used by the simplified statistics page.
+   Kept intentionally small so styles feel handcrafted rather than generated.
+*/
+
+.stats-container {
+  max-width: 900px;
+  margin: 28px auto;
+  padding: 28px 18px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  color: #0f172a;
+}
+
+.stats-container h1 {
+  font-size: 1.6rem;
+  margin: 0 0 14px 0;
+  text-align: center;
+  font-weight: 600;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 8px 22px rgba(2,6,23,0.06);
+  border: 1px solid rgba(2,6,23,0.04);
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stat-card h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #334155;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 2.15rem;
+  margin: 12px 0;
+  font-weight: 700;
+  color: #0b1220;
+}
+
+.stat-meta {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 6px 0;
+}
+
+@media (max-width: 480px) {
+  .stat-value {
+    font-size: 1.6rem;
+  }
+
+  .stats-container {
+    padding: 18px 12px;
+  }
+}
