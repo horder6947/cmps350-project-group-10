@@ -46,6 +46,12 @@ export async function getFollowingCount(p_userid) {
     } catch (e) { console.error(e); }
 }
 
+export async function getTotalFollowerCount() {
+    return (await prisma.follows.aggregate({
+        _count: true,
+    }))._count;
+}
+
 export async function follow(p_followerid, p_followeeid) {
     try {
         const result = await prisma.follows.create({

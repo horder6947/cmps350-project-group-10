@@ -12,7 +12,7 @@ export async function newUser(p_username, p_email, p_password) {
                 id: true,
             }
         })
-        return result;
+        return result.id;
     } catch (e) { console.error(e); }
 }
 
@@ -31,6 +31,12 @@ export async function getUser(p_userid) {
         });
         return result;
     } catch (e) { console.error(e); }
+}
+
+export async function getUserCount() {
+    return (await prisma.user.aggregate({
+        _count: true,
+    }))._count;
 }
 
 export async function changeBio(p_userid, p_newBio) {
