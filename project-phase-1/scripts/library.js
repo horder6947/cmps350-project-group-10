@@ -3,35 +3,35 @@
 import { nanoid } from "./nanoid.js";
 
 export {
-    initializeUsers,//
-    initializePosts,//
-    newUser,//
-    getUser,//
+    initializeUsers,
+    initializePosts,
+    newUser,
+    getUser,
     getPost,
-    doesUserExist,//
-    login,//
-    logout,//
+    doesUserExist,
+    login,
+    logout,
     createPost,
     deletePost,
     likePost,
     removeLike,
     commentOnPost,
     deleteComment,
-    follow,//
-    unfollow,//
-    changeBio,//
-    addProfilePicture,//
-    changeUsername,//
-    changePassword,//
+    follow,
+    unfollow,
+    changeBio,
+    addProfilePicture,
+    changeUsername,
+    changePassword,
     getPostsByAuthorID,
-    getFollowers,//
-    getFollowing,//
+    getFollowers,
+    getFollowing,
     sortPostsByLikes,
     sortPostsByComments,
     sortPostsChronologically,
     getFollowingPosts,
     getAllPosts,
-    isValidEmail//
+    isValidEmail
 }
 
 async function initializeUsers() {

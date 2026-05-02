@@ -9,27 +9,8 @@ const prisma = new PrismaClient({
     log: ["query"],
 });
 
-
 const users = [];
 const posts = [];
-
-const seed1 = async () => {
-    try {
-        console.log((await prisma.user.create({
-            data: {
-                username: "testing1",
-                email: "testing1@example.com",
-                password: "password1",
-                bio: "bio1"
-            },
-            select: {
-                id: true
-            }
-        })).id);
-    } catch (e) {
-        console.error(e);
-    }
-}
 
 const seed = async () => {
 
@@ -44,6 +25,10 @@ const seed = async () => {
                         email: faker.internet.email({ firstName: myUsername }),
                         password: faker.internet.password({ memorable: true }),
                         bio: faker.lorem.sentence(4),
+                        date_created: faker.date.between({
+                            from: new Date('2026-01-01'),
+                            to: new Date('2026-04-15')
+                        })
                     },
                     select: {
                         id: true,
@@ -56,8 +41,6 @@ const seed = async () => {
 
     const users_count = users.length;
 
-    // console.log(users);
-
     // create 300 posts, assign them to random users
     await Promise.all(
         Array.from({ length: 300 }).map(async () => {
@@ -66,6 +49,10 @@ const seed = async () => {
                     data: {
                         author_id: users[Math.floor(Math.random() * users_count)],
                         post_content: faker.lorem.sentence(),
+                        date_created: faker.date.between({
+                            from: new Date('2026-04-16'),
+                            to: new Date('2026-05-02')
+                        })
                     },
                     select: {
                         id: true
