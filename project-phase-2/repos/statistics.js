@@ -98,14 +98,14 @@ export async function getMostLikedPosts(p_count) {
 
 export async function getNewUsers() {
   try {
-    const result = await prisma.user.findMany({
+    return await prisma.user.findMany({
       where: {
         date_created: {
           gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
         },
       },
+      select: { id: true },
     });
-    return result;
   } catch (e) {
     console.error(e);
     return [];
