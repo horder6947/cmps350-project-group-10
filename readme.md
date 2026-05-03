@@ -25,12 +25,12 @@ Sharif Hamad - sh2209291@student.qu.edu.qa
 
 ## 3. Feature Checklist - Phase 2
  
-| Task                          | Assigned to   | Done?     | Comments                              |
-| :---------------------------- | :------------ | :-------- | :------------------------------------ |
-| Design Database               | [yacine]      | [done]    |                                       |
-| Seed Database                 | [khaled]      | [done]    |                                       |
-| API and Repository            | [khaled]      | [done]    |                                       |
-| Statistics                    | [khaled]      | [done]    |                                       |
-| Frontend conversion           | [sharif]      | []        | from html to jsx                      |
-| Documentation                 | [tameem]      | []        |                                       |
-| Host Website and DB (bonus)   | [yacine]      | [done]    | https://cmps350-project-group-10.vercel.app |
+| Task                          | Assigned to            | Done?     | Comments                              |
+| :---------------------------- | :------------          | :-------- | :------------------------------------ |
+| Design Database               | [yacine]               | [done]    |                                       |
+| Seed Database                 | [khaled]               | [done]    |                                       |
+| API and Repository            | [khaled]               | [done]    |                                       |
+| Statistics                    | [khaled & Tameem]      | [done]    |                                       |
+| Frontend conversion           | [sharif]               | [done]    | from html to jsx                      |
+| Documentation                 | [tameem]               | [done]    |                                       |
+| Host Website and DB (bonus)   | [yacine]               | [done]    | https://cmps350-project-group-10.vercel.app |
